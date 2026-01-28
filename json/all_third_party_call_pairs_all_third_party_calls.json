@@ -1,0 +1,154 @@
+{
+  "callPairs" : [ {
+    "caller" : "tech.tablesaw.io.json.JsonReader.<clinit>()",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.<init>()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfArrays(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.asText()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfArrays(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.get(int)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfArrays(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.size()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfArrays(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.textValue()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfArrays(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.isTextual()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfArrays(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.iterator()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.asText()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.get(int)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.size()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.get(java.lang.String)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.has(java.lang.String)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.iterator()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.readTree(java.lang.String)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.fieldNames()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.github.wnameless.json.flattener.JsonFlattener.flatten(java.lang.String)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.read(tech.tablesaw.io.json.JsonReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.at(java.lang.String)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.read(tech.tablesaw.io.json.JsonReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.isArray()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.read(tech.tablesaw.io.json.JsonReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.readTree(java.io.Reader)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.read(tech.tablesaw.io.json.JsonReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.size()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonReader.read(tech.tablesaw.io.json.JsonReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.get(int)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonWriter.<clinit>()",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.<init>()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonWriter.<clinit>()",
+    "thirdPartyMethod" : "com.fasterxml.jackson.datatype.jsr310.JavaTimeModule.<init>()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonWriter.<clinit>()",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.convertValue(java.lang.Object, java.lang.Class)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.createObjectNode()"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.node.ArrayNode.add(com.fasterxml.jackson.databind.JsonNode)"
+  }, {
+    "caller" : "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.createArrayNode()"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlReader.<clinit>()",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.<init>()"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlReader.convertObjects(java.util.Iterator, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.iterator()"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlReader.convertObjects(java.util.Iterator, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.has(java.lang.String)"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlReader.convertObjects(java.util.Iterator, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.get(java.lang.String)"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlReader.convertObjects(java.util.Iterator, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.github.wnameless.json.flattener.JsonFlattener.flatten(java.lang.String)"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlReader.convertObjects(java.util.Iterator, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.fieldNames()"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlReader.convertObjects(java.util.Iterator, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.readTree(java.lang.String)"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlReader.convertObjects(java.util.Iterator, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.JsonNode.asText()"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlReader.convertObjects(java.util.Iterator, tech.tablesaw.io.ReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectReader.createParser(java.io.Reader)"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectReader.readValues(com.fasterxml.jackson.core.JsonParser)"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.readerFor(java.lang.Class)"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlWriter.<clinit>()",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlWriter.<clinit>()",
+    "thirdPartyMethod" : "com.fasterxml.jackson.datatype.jsr310.JavaTimeModule.<init>()"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlWriter.<clinit>()",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.<init>()"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.createObjectNode()"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)"
+  }, {
+    "caller" : "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+    "thirdPartyMethod" : "com.fasterxml.jackson.databind.ObjectMapper.convertValue(java.lang.Object, java.lang.Class)"
+  } ],
+  "totalUniquePairs" : 50
+}

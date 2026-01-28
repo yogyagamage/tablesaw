@@ -1,0 +1,531 @@
+{
+  "fullMethodsPaths": [
+    {
+      "entryPoint": "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)",
+      "thirdPartyMethod": "com.fasterxml.jackson.databind.ObjectReader.createParser(java.io.Reader)",
+      "directCaller": "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)",
+      "path": [
+        "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)",
+        "com.fasterxml.jackson.databind.ObjectReader.createParser(java.io.Reader)"
+      ],
+      "methodSources": [
+        "@Override\npublic Table read(JsonlReadOptions options) {\n    ObjectReader stream = mapper.readerFor(JsonNode.class);\n    try {\n        Reader reader = options.source().createReader(null);\n        // PATH: Test should invoke the next ObjectReader.createParser(...) [step in execution path]\n        JsonParser parser = stream.createParser(reader);\n        Iterator<JsonNode> iter = stream.readValues(parser);\n        return convertObjects(iter, options);\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "constructors": [
+        "JsonlReader() {\n}"
+      ],
+      "fieldDeclarations": [
+        "private static final JsonlReader INSTANCE = new JsonlReader();",
+        "private static final ObjectMapper mapper = new ObjectMapper();"
+      ],
+      "setters": [],
+      "imports": [
+        "com.fasterxml.jackson.core.JsonParser",
+        "com.fasterxml.jackson.core.JsonProcessingException",
+        "com.fasterxml.jackson.databind.JsonNode",
+        "com.fasterxml.jackson.databind.MappingIterator",
+        "com.fasterxml.jackson.databind.ObjectMapper",
+        "com.fasterxml.jackson.databind.ObjectReader",
+        "com.github.wnameless.json.flattener.JsonFlattener",
+        "tech.tablesaw.api.Table",
+        "tech.tablesaw.io.ReadOptions",
+        "tech.tablesaw.io.RuntimeIOException",
+        "tech.tablesaw.io.Source",
+        "tech.tablesaw.io.TableBuildingUtils",
+        "tech.tablesaw.io.jsonl.JsonlReadOptions.Builder"
+      ],
+      "testTemplate": "package tech.tablesaw.io.jsonl;\n\npublic class JsonlReaderread_ObjectReadercreateParserFikaTest {\n\n    @Test\n    public void testRead() {\n    }\n}",
+      "conditionCount": 0,
+      "callCount": 1,
+      "covered": true
+    },
+    {
+      "entryPoint": "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)",
+      "thirdPartyMethod": "com.fasterxml.jackson.databind.ObjectMapper.readerFor(java.lang.Class)",
+      "directCaller": "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)",
+      "path": [
+        "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)",
+        "com.fasterxml.jackson.databind.ObjectMapper.readerFor(java.lang.Class)"
+      ],
+      "methodSources": [
+        "@Override\npublic Table read(JsonlReadOptions options) {\n    // PATH: Test should invoke the next ObjectMapper.readerFor(...) [step in execution path]\n    ObjectReader stream = mapper.readerFor(JsonNode.class);\n    try {\n        Reader reader = options.source().createReader(null);\n        JsonParser parser = stream.createParser(reader);\n        Iterator<JsonNode> iter = stream.readValues(parser);\n        return convertObjects(iter, options);\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "constructors": [
+        "JsonlReader() {\n}"
+      ],
+      "fieldDeclarations": [
+        "private static final JsonlReader INSTANCE = new JsonlReader();",
+        "private static final ObjectMapper mapper = new ObjectMapper();"
+      ],
+      "setters": [],
+      "imports": [
+        "com.fasterxml.jackson.core.JsonParser",
+        "com.fasterxml.jackson.core.JsonProcessingException",
+        "com.fasterxml.jackson.databind.JsonNode",
+        "com.fasterxml.jackson.databind.MappingIterator",
+        "com.fasterxml.jackson.databind.ObjectMapper",
+        "com.fasterxml.jackson.databind.ObjectReader",
+        "com.github.wnameless.json.flattener.JsonFlattener",
+        "tech.tablesaw.api.Table",
+        "tech.tablesaw.io.ReadOptions",
+        "tech.tablesaw.io.RuntimeIOException",
+        "tech.tablesaw.io.Source",
+        "tech.tablesaw.io.TableBuildingUtils",
+        "tech.tablesaw.io.jsonl.JsonlReadOptions.Builder"
+      ],
+      "testTemplate": "package tech.tablesaw.io.jsonl;\n\npublic class JsonlReaderread_ObjectMapperreaderForFikaTest {\n\n    @Test\n    public void testRead() {\n    }\n}",
+      "conditionCount": 0,
+      "callCount": 1,
+      "covered": true
+    },
+    {
+      "entryPoint": "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)",
+      "thirdPartyMethod": "com.fasterxml.jackson.databind.ObjectReader.readValues(com.fasterxml.jackson.core.JsonParser)",
+      "directCaller": "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)",
+      "path": [
+        "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)",
+        "com.fasterxml.jackson.databind.ObjectReader.readValues(com.fasterxml.jackson.core.JsonParser)"
+      ],
+      "methodSources": [
+        "@Override\npublic Table read(JsonlReadOptions options) {\n    ObjectReader stream = mapper.readerFor(JsonNode.class);\n    try {\n        Reader reader = options.source().createReader(null);\n        JsonParser parser = stream.createParser(reader);\n        // PATH: Test should invoke the next ObjectReader.readValues(...) [step in execution path]\n        Iterator<JsonNode> iter = stream.readValues(parser);\n        return convertObjects(iter, options);\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "constructors": [
+        "JsonlReader() {\n}"
+      ],
+      "fieldDeclarations": [
+        "private static final JsonlReader INSTANCE = new JsonlReader();",
+        "private static final ObjectMapper mapper = new ObjectMapper();"
+      ],
+      "setters": [],
+      "imports": [
+        "com.fasterxml.jackson.core.JsonParser",
+        "com.fasterxml.jackson.core.JsonProcessingException",
+        "com.fasterxml.jackson.databind.JsonNode",
+        "com.fasterxml.jackson.databind.MappingIterator",
+        "com.fasterxml.jackson.databind.ObjectMapper",
+        "com.fasterxml.jackson.databind.ObjectReader",
+        "com.github.wnameless.json.flattener.JsonFlattener",
+        "tech.tablesaw.api.Table",
+        "tech.tablesaw.io.ReadOptions",
+        "tech.tablesaw.io.RuntimeIOException",
+        "tech.tablesaw.io.Source",
+        "tech.tablesaw.io.TableBuildingUtils",
+        "tech.tablesaw.io.jsonl.JsonlReadOptions.Builder"
+      ],
+      "testTemplate": "package tech.tablesaw.io.jsonl;\n\npublic class JsonlReaderread_ObjectReaderreadValuesFikaTest {\n\n    @Test\n    public void testRead() {\n    }\n}",
+      "conditionCount": 0,
+      "callCount": 1,
+      "covered": true
+    },
+    {
+      "entryPoint": "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+      "thirdPartyMethod": "com.fasterxml.jackson.databind.ObjectMapper.convertValue(java.lang.Object, java.lang.Class)",
+      "directCaller": "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+      "path": [
+        "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+        "com.fasterxml.jackson.databind.ObjectMapper.convertValue(java.lang.Object, java.lang.Class)"
+      ],
+      "methodSources": [
+        "public void write(Table table, JsonlWriteOptions options) {\n    try (Writer writer = options.destination().createWriter()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                // PATH: Test should invoke the next ObjectMapper.convertValue(...) [step in execution path]\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            String str = mapper.writeValueAsString(row);\n            writer.write(str);\n            if (r < (table.rowCount() - 1)) {\n                writer.write(\"\\n\");\n            }\n        }\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "constructors": [
+        "JsonlWriter() {\n}"
+      ],
+      "fieldDeclarations": [
+        "private static final JsonlWriter INSTANCE = new JsonlWriter();",
+        "private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());"
+      ],
+      "setters": [
+        "public void write(Table table, JsonlWriteOptions options) {\n    try (Writer writer = options.destination().createWriter()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            String str = mapper.writeValueAsString(row);\n            writer.write(str);\n            if (r < (table.rowCount() - 1)) {\n                writer.write(\"\\n\");\n            }\n        }\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "imports": [
+        "com.fasterxml.jackson.databind.JsonNode",
+        "com.fasterxml.jackson.databind.ObjectMapper",
+        "com.fasterxml.jackson.databind.node.ObjectNode",
+        "tech.tablesaw.api.Table",
+        "tech.tablesaw.io.Destination",
+        "tech.tablesaw.io.RuntimeIOException",
+        "tech.tablesaw.io.jsonl.JsonlWriteOptions.Builder"
+      ],
+      "testTemplate": "package tech.tablesaw.io.jsonl;\n\npublic class JsonlWriterwrite_ObjectMapperconvertValueFikaTest {\n\n    @Test\n    public void testWrite() {\n    }\n}",
+      "conditionCount": 3,
+      "callCount": 1,
+      "covered": false
+    },
+    {
+      "entryPoint": "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+      "thirdPartyMethod": "com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)",
+      "directCaller": "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+      "path": [
+        "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+        "com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)"
+      ],
+      "methodSources": [
+        "public void write(Table table, JsonlWriteOptions options) {\n    try (Writer writer = options.destination().createWriter()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            // PATH: Test should invoke the next ObjectMapper.writeValueAsString(...) [step in execution path]\n            String str = mapper.writeValueAsString(row);\n            writer.write(str);\n            if (r < (table.rowCount() - 1)) {\n                writer.write(\"\\n\");\n            }\n        }\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "constructors": [
+        "JsonlWriter() {\n}"
+      ],
+      "fieldDeclarations": [
+        "private static final JsonlWriter INSTANCE = new JsonlWriter();",
+        "private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());"
+      ],
+      "setters": [
+        "public void write(Table table, JsonlWriteOptions options) {\n    try (Writer writer = options.destination().createWriter()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            String str = mapper.writeValueAsString(row);\n            writer.write(str);\n            if (r < (table.rowCount() - 1)) {\n                writer.write(\"\\n\");\n            }\n        }\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "imports": [
+        "com.fasterxml.jackson.databind.JsonNode",
+        "com.fasterxml.jackson.databind.ObjectMapper",
+        "com.fasterxml.jackson.databind.node.ObjectNode",
+        "tech.tablesaw.api.Table",
+        "tech.tablesaw.io.Destination",
+        "tech.tablesaw.io.RuntimeIOException",
+        "tech.tablesaw.io.jsonl.JsonlWriteOptions.Builder"
+      ],
+      "testTemplate": "package tech.tablesaw.io.jsonl;\n\npublic class JsonlWriterwrite_ObjectMapperwriteValueAsStringFikaTest {\n\n    @Test\n    public void testWrite() {\n    }\n}",
+      "conditionCount": 3,
+      "callCount": 1,
+      "covered": true
+    },
+    {
+      "entryPoint": "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+      "thirdPartyMethod": "com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)",
+      "directCaller": "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+      "path": [
+        "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+        "com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)"
+      ],
+      "methodSources": [
+        "public void write(Table table, JsonlWriteOptions options) {\n    try (Writer writer = options.destination().createWriter()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) // PATH: Test should invoke the next ObjectNode.set(...) [step in execution path]\n            {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            String str = mapper.writeValueAsString(row);\n            writer.write(str);\n            if (r < (table.rowCount() - 1)) {\n                writer.write(\"\\n\");\n            }\n        }\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "constructors": [
+        "JsonlWriter() {\n}"
+      ],
+      "fieldDeclarations": [
+        "private static final JsonlWriter INSTANCE = new JsonlWriter();",
+        "private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());"
+      ],
+      "setters": [
+        "public void write(Table table, JsonlWriteOptions options) {\n    try (Writer writer = options.destination().createWriter()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            String str = mapper.writeValueAsString(row);\n            writer.write(str);\n            if (r < (table.rowCount() - 1)) {\n                writer.write(\"\\n\");\n            }\n        }\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "imports": [
+        "com.fasterxml.jackson.databind.JsonNode",
+        "com.fasterxml.jackson.databind.ObjectMapper",
+        "com.fasterxml.jackson.databind.node.ObjectNode",
+        "tech.tablesaw.api.Table",
+        "tech.tablesaw.io.Destination",
+        "tech.tablesaw.io.RuntimeIOException",
+        "tech.tablesaw.io.jsonl.JsonlWriteOptions.Builder"
+      ],
+      "testTemplate": "package tech.tablesaw.io.jsonl;\n\npublic class JsonlWriterwrite_ObjectNodesetFikaTest {\n\n    @Test\n    public void testWrite() {\n    }\n}",
+      "conditionCount": 3,
+      "callCount": 1,
+      "covered": false
+    },
+    {
+      "entryPoint": "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)",
+      "thirdPartyMethod": "com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)",
+      "directCaller": "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)",
+      "path": [
+        "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)",
+        "com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)"
+      ],
+      "methodSources": [
+        "public void write(Table table, JsonWriteOptions options) {\n    ArrayNode output = mapper.createArrayNode();\n    if (options.asObjects()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) // PATH: Test should invoke the next ObjectNode.set(...) [step in execution path]\n            {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            output.add(row);\n        }\n    } else {\n        if (options.header()) {\n            ArrayNode row = mapper.createArrayNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.add(mapper.convertValue(table.column(c).name(), JsonNode.class));\n            }\n            output.add(row);\n        }\n        for (int r = 0; r < table.rowCount(); r++) {\n            ArrayNode row = mapper.createArrayNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.add(mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            output.add(row);\n        }\n    }\n    try (Writer writer = options.destination().createWriter()) {\n        String str = mapper.writeValueAsString(output);\n        writer.write(str);\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "constructors": [
+        "JsonWriter() {\n}"
+      ],
+      "fieldDeclarations": [
+        "private static final JsonWriter INSTANCE = new JsonWriter();",
+        "private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());"
+      ],
+      "setters": [
+        "public void write(Table table, JsonWriteOptions options) {\n    ArrayNode output = mapper.createArrayNode();\n    if (options.asObjects()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            output.add(row);\n        }\n    } else {\n        if (options.header()) {\n            ArrayNode row = mapper.createArrayNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.add(mapper.convertValue(table.column(c).name(), JsonNode.class));\n            }\n            output.add(row);\n        }\n        for (int r = 0; r < table.rowCount(); r++) {\n            ArrayNode row = mapper.createArrayNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.add(mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            output.add(row);\n        }\n    }\n    try (Writer writer = options.destination().createWriter()) {\n        String str = mapper.writeValueAsString(output);\n        writer.write(str);\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "imports": [
+        "com.fasterxml.jackson.databind.JsonNode",
+        "com.fasterxml.jackson.databind.ObjectMapper",
+        "com.fasterxml.jackson.databind.node.ArrayNode",
+        "com.fasterxml.jackson.databind.node.ObjectNode",
+        "tech.tablesaw.api.Table",
+        "tech.tablesaw.io.Destination",
+        "tech.tablesaw.io.RuntimeIOException",
+        "tech.tablesaw.io.json.JsonWriteOptions.Builder"
+      ],
+      "testTemplate": "package tech.tablesaw.io.json;\n\npublic class JsonWriterwrite_ObjectNodesetFikaTest {\n\n    @Test\n    public void testWrite() {\n    }\n}",
+      "conditionCount": 7,
+      "callCount": 1,
+      "covered": false
+    },
+    {
+      "entryPoint": "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)",
+      "thirdPartyMethod": "com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)",
+      "directCaller": "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)",
+      "path": [
+        "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)",
+        "com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)"
+      ],
+      "methodSources": [
+        "public void write(Table table, JsonWriteOptions options) {\n    ArrayNode output = mapper.createArrayNode();\n    if (options.asObjects()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            output.add(row);\n        }\n    } else {\n        if (options.header()) {\n            ArrayNode row = mapper.createArrayNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.add(mapper.convertValue(table.column(c).name(), JsonNode.class));\n            }\n            output.add(row);\n        }\n        for (int r = 0; r < table.rowCount(); r++) {\n            ArrayNode row = mapper.createArrayNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.add(mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            output.add(row);\n        }\n    }\n    try (Writer writer = options.destination().createWriter()) {\n        // PATH: Test should invoke the next ObjectMapper.writeValueAsString(...) [step in execution path]\n        String str = mapper.writeValueAsString(output);\n        writer.write(str);\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "constructors": [
+        "JsonWriter() {\n}"
+      ],
+      "fieldDeclarations": [
+        "private static final JsonWriter INSTANCE = new JsonWriter();",
+        "private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());"
+      ],
+      "setters": [
+        "public void write(Table table, JsonWriteOptions options) {\n    ArrayNode output = mapper.createArrayNode();\n    if (options.asObjects()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            output.add(row);\n        }\n    } else {\n        if (options.header()) {\n            ArrayNode row = mapper.createArrayNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.add(mapper.convertValue(table.column(c).name(), JsonNode.class));\n            }\n            output.add(row);\n        }\n        for (int r = 0; r < table.rowCount(); r++) {\n            ArrayNode row = mapper.createArrayNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.add(mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            output.add(row);\n        }\n    }\n    try (Writer writer = options.destination().createWriter()) {\n        String str = mapper.writeValueAsString(output);\n        writer.write(str);\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "imports": [
+        "com.fasterxml.jackson.databind.JsonNode",
+        "com.fasterxml.jackson.databind.ObjectMapper",
+        "com.fasterxml.jackson.databind.node.ArrayNode",
+        "com.fasterxml.jackson.databind.node.ObjectNode",
+        "tech.tablesaw.api.Table",
+        "tech.tablesaw.io.Destination",
+        "tech.tablesaw.io.RuntimeIOException",
+        "tech.tablesaw.io.json.JsonWriteOptions.Builder"
+      ],
+      "testTemplate": "package tech.tablesaw.io.json;\n\npublic class JsonWriterwrite_ObjectMapperwriteValueAsStringFikaTest {\n\n    @Test\n    public void testWrite() {\n    }\n}",
+      "conditionCount": 7,
+      "callCount": 1,
+      "covered": false
+    },
+    {
+      "entryPoint": "tech.tablesaw.io.jsonl.JsonlWriter.register(tech.tablesaw.io.WriterRegistry)",
+      "thirdPartyMethod": "com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)",
+      "directCaller": "tech.tablesaw.io.jsonl.JsonlWriter.<clinit>()",
+      "path": [
+        "tech.tablesaw.io.jsonl.JsonlWriter.register(tech.tablesaw.io.WriterRegistry)",
+        "tech.tablesaw.io.jsonl.JsonlWriter.<clinit>()",
+        "com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)"
+      ],
+      "methodSources": [
+        "public static void register(WriterRegistry registry) {\n    registry.registerExtension(\"jsonl\", INSTANCE);\n    registry.registerOptions(JsonlWriteOptions.class, INSTANCE);\n}",
+        "tech.tablesaw.io.jsonl.JsonlWriter\n\n// Static field initializations\nprivate static final JsonlWriter INSTANCE = new JsonlWriter();\nprivate static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());\n\n// Static initializer blocks\nstatic static {\n    register(Table.defaultWriterRegistry);\n}\n"
+      ],
+      "constructors": [
+        "JsonlWriter() {\n}"
+      ],
+      "fieldDeclarations": [
+        "private static final JsonlWriter INSTANCE = new JsonlWriter();",
+        "private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());"
+      ],
+      "setters": [
+        "public void write(Table table, JsonlWriteOptions options) {\n    try (Writer writer = options.destination().createWriter()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            String str = mapper.writeValueAsString(row);\n            writer.write(str);\n            if (r < (table.rowCount() - 1)) {\n                writer.write(\"\\n\");\n            }\n        }\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "imports": [
+        "com.fasterxml.jackson.databind.JsonNode",
+        "com.fasterxml.jackson.databind.Module",
+        "com.fasterxml.jackson.databind.ObjectMapper",
+        "com.fasterxml.jackson.databind.node.ObjectNode",
+        "com.fasterxml.jackson.datatype.jsr310.JavaTimeModule",
+        "tech.tablesaw.api.Table",
+        "tech.tablesaw.io.RuntimeIOException",
+        "tech.tablesaw.io.WriterRegistry"
+      ],
+      "testTemplate": "package tech.tablesaw.io.jsonl;\n\npublic class JsonlWritermethod_ObjectMapperregisterModuleFikaTest {\n\n    @Test\n    public void testRegister() {\n    }\n}",
+      "conditionCount": 0,
+      "callCount": 1,
+      "covered": true
+    },
+    {
+      "entryPoint": "tech.tablesaw.io.json.JsonWriter.register(tech.tablesaw.io.WriterRegistry)",
+      "thirdPartyMethod": "com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)",
+      "directCaller": "tech.tablesaw.io.json.JsonWriter.<clinit>()",
+      "path": [
+        "tech.tablesaw.io.json.JsonWriter.register(tech.tablesaw.io.WriterRegistry)",
+        "tech.tablesaw.io.json.JsonWriter.<clinit>()",
+        "com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)"
+      ],
+      "methodSources": [
+        "public static void register(WriterRegistry registry) {\n    registry.registerExtension(\"json\", INSTANCE);\n    registry.registerOptions(JsonWriteOptions.class, INSTANCE);\n}",
+        "tech.tablesaw.io.json.JsonWriter\n\n// Static field initializations\nprivate static final JsonWriter INSTANCE = new JsonWriter();\nprivate static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());\n\n// Static initializer blocks\nstatic static {\n    register(Table.defaultWriterRegistry);\n}\n"
+      ],
+      "constructors": [
+        "JsonWriter() {\n}"
+      ],
+      "fieldDeclarations": [
+        "private static final JsonWriter INSTANCE = new JsonWriter();",
+        "private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());"
+      ],
+      "setters": [
+        "public void write(Table table, JsonWriteOptions options) {\n    ArrayNode output = mapper.createArrayNode();\n    if (options.asObjects()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            output.add(row);\n        }\n    } else {\n        if (options.header()) {\n            ArrayNode row = mapper.createArrayNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.add(mapper.convertValue(table.column(c).name(), JsonNode.class));\n            }\n            output.add(row);\n        }\n        for (int r = 0; r < table.rowCount(); r++) {\n            ArrayNode row = mapper.createArrayNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.add(mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            output.add(row);\n        }\n    }\n    try (Writer writer = options.destination().createWriter()) {\n        String str = mapper.writeValueAsString(output);\n        writer.write(str);\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "imports": [
+        "com.fasterxml.jackson.databind.JsonNode",
+        "com.fasterxml.jackson.databind.Module",
+        "com.fasterxml.jackson.databind.ObjectMapper",
+        "com.fasterxml.jackson.databind.node.ArrayNode",
+        "com.fasterxml.jackson.databind.node.ObjectNode",
+        "com.fasterxml.jackson.datatype.jsr310.JavaTimeModule",
+        "tech.tablesaw.api.Table",
+        "tech.tablesaw.io.RuntimeIOException",
+        "tech.tablesaw.io.WriterRegistry"
+      ],
+      "testTemplate": "package tech.tablesaw.io.json;\n\npublic class JsonWritermethod_ObjectMapperregisterModuleFikaTest {\n\n    @Test\n    public void testRegister() {\n    }\n}",
+      "conditionCount": 0,
+      "callCount": 1,
+      "covered": true
+    },
+    {
+      "entryPoint": "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+      "thirdPartyMethod": "com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)",
+      "directCaller": "tech.tablesaw.io.jsonl.JsonlWriter.<clinit>()",
+      "path": [
+        "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+        "tech.tablesaw.io.jsonl.JsonlWriter.<clinit>()",
+        "com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)"
+      ],
+      "methodSources": [
+        "public void write(Table table, JsonlWriteOptions options) {\n    try (Writer writer = options.destination().createWriter()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            String str = mapper.writeValueAsString(row);\n            writer.write(str);\n            if (r < (table.rowCount() - 1)) {\n                writer.write(\"\\n\");\n            }\n        }\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}",
+        "tech.tablesaw.io.jsonl.JsonlWriter\n\n// Static field initializations\nprivate static final JsonlWriter INSTANCE = new JsonlWriter();\nprivate static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());\n\n// Static initializer blocks\nstatic static {\n    register(Table.defaultWriterRegistry);\n}\n"
+      ],
+      "constructors": [
+        "JsonlWriter() {\n}"
+      ],
+      "fieldDeclarations": [
+        "private static final JsonlWriter INSTANCE = new JsonlWriter();",
+        "private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());"
+      ],
+      "setters": [
+        "public void write(Table table, JsonlWriteOptions options) {\n    try (Writer writer = options.destination().createWriter()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            String str = mapper.writeValueAsString(row);\n            writer.write(str);\n            if (r < (table.rowCount() - 1)) {\n                writer.write(\"\\n\");\n            }\n        }\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "imports": [
+        "com.fasterxml.jackson.databind.JsonNode",
+        "com.fasterxml.jackson.databind.Module",
+        "com.fasterxml.jackson.databind.ObjectMapper",
+        "com.fasterxml.jackson.databind.node.ObjectNode",
+        "com.fasterxml.jackson.datatype.jsr310.JavaTimeModule",
+        "tech.tablesaw.api.Table",
+        "tech.tablesaw.io.Destination",
+        "tech.tablesaw.io.RuntimeIOException",
+        "tech.tablesaw.io.WriterRegistry",
+        "tech.tablesaw.io.jsonl.JsonlWriteOptions.Builder"
+      ],
+      "testTemplate": "package tech.tablesaw.io.jsonl;\n\npublic class JsonlWritermethod_ObjectMapperregisterModuleFikaTest {\n\n    @Test\n    public void testWrite() {\n    }\n}",
+      "conditionCount": 3,
+      "callCount": 1,
+      "covered": true
+    },
+    {
+      "entryPoint": "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)",
+      "thirdPartyMethod": "com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)",
+      "directCaller": "tech.tablesaw.io.jsonl.JsonlReader.convertObjects(java.util.Iterator, tech.tablesaw.io.ReadOptions)",
+      "path": [
+        "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)",
+        "tech.tablesaw.io.jsonl.JsonlReader.convertObjects(java.util.Iterator, tech.tablesaw.io.ReadOptions)",
+        "com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)"
+      ],
+      "methodSources": [
+        "@Override\npublic Table read(JsonlReadOptions options) {\n    ObjectReader stream = mapper.readerFor(JsonNode.class);\n    try {\n        Reader reader = options.source().createReader(null);\n        JsonParser parser = stream.createParser(reader);\n        Iterator<JsonNode> iter = stream.readValues(parser);\n        // PATH: Test should invoke the next JsonlReader.convertObjects(...) [step in execution path]\n        return convertObjects(iter, options);\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}",
+        "private Table convertObjects(Iterator<JsonNode> iter, ReadOptions options) {\n    // flatten each object inside the array\n    StringBuilder result = new StringBuilder(\"[\");\n    boolean first = true;\n    for (; iter.hasNext();) {\n        JsonNode rowObj = iter.next();\n        String flattenedRow = null;\n        try {\n            flattenedRow = // PATH: Test should invoke the next ObjectMapper.writeValueAsString(...) [step in execution path]\n            JsonFlattener.flatten(mapper.writeValueAsString(rowObj));\n        } catch (JsonProcessingException e) {\n            throw new RuntimeIOException(e);\n        }\n        if (!first) {\n            result.append(\",\");\n        }\n        first = false;\n        result.append(flattenedRow);\n    }\n    String flattenedJsonString = result.append(\"]\").toString();\n    JsonNode flattenedJsonObj = null;\n    try {\n        flattenedJsonObj = mapper.readTree(flattenedJsonString);\n    } catch (JsonProcessingException e) {\n        throw new RuntimeIOException(e);\n    }\n    Set<String> colNames = new LinkedHashSet<>();\n    for (JsonNode row : flattenedJsonObj) {\n        Iterator<String> fieldNames = row.fieldNames();\n        while (fieldNames.hasNext()) {\n            colNames.add(fieldNames.next());\n        } \n    }\n    List<String> columnNames = new ArrayList<>(colNames);\n    List<String[]> dataRows = new ArrayList<>();\n    for (JsonNode node : flattenedJsonObj) {\n        String[] arr = new String[columnNames.size()];\n        for (int i = 0; i < columnNames.size(); i++) {\n            if (node.has(columnNames.get(i))) {\n                arr[i] = node.get(columnNames.get(i)).asText();\n            } else {\n                arr[i] = null;\n            }\n        }\n        dataRows.add(arr);\n    }\n    return TableBuildingUtils.build(columnNames, dataRows, options);\n}"
+      ],
+      "constructors": [
+        "JsonlReader() {\n}"
+      ],
+      "fieldDeclarations": [
+        "private static final JsonlReader INSTANCE = new JsonlReader();",
+        "private static final ObjectMapper mapper = new ObjectMapper();"
+      ],
+      "setters": [],
+      "imports": [
+        "com.fasterxml.jackson.core.JsonParser",
+        "com.fasterxml.jackson.core.JsonProcessingException",
+        "com.fasterxml.jackson.databind.JsonNode",
+        "com.fasterxml.jackson.databind.MappingIterator",
+        "com.fasterxml.jackson.databind.ObjectMapper",
+        "com.fasterxml.jackson.databind.ObjectReader",
+        "com.github.wnameless.json.flattener.JsonFlattener",
+        "tech.tablesaw.api.Table",
+        "tech.tablesaw.io.ReadOptions",
+        "tech.tablesaw.io.RuntimeIOException",
+        "tech.tablesaw.io.Source",
+        "tech.tablesaw.io.TableBuildingUtils",
+        "tech.tablesaw.io.jsonl.JsonlReadOptions.Builder"
+      ],
+      "testTemplate": "package tech.tablesaw.io.jsonl;\n\npublic class JsonlReaderconvertObjects_ObjectMapperwriteValueAsStringFikaTest {\n\n    @Test\n    public void testRead() {\n    }\n}",
+      "conditionCount": 7,
+      "callCount": 1,
+      "covered": true
+    },
+    {
+      "entryPoint": "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)",
+      "thirdPartyMethod": "com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)",
+      "directCaller": "tech.tablesaw.io.json.JsonWriter.<clinit>()",
+      "path": [
+        "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)",
+        "tech.tablesaw.io.json.JsonWriter.<clinit>()",
+        "com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)"
+      ],
+      "methodSources": [
+        "public void write(Table table, JsonWriteOptions options) {\n    ArrayNode output = mapper.createArrayNode();\n    if (options.asObjects()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            output.add(row);\n        }\n    } else {\n        if (options.header()) {\n            ArrayNode row = mapper.createArrayNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.add(mapper.convertValue(table.column(c).name(), JsonNode.class));\n            }\n            output.add(row);\n        }\n        for (int r = 0; r < table.rowCount(); r++) {\n            ArrayNode row = mapper.createArrayNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.add(mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            output.add(row);\n        }\n    }\n    try (Writer writer = options.destination().createWriter()) {\n        String str = mapper.writeValueAsString(output);\n        writer.write(str);\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}",
+        "tech.tablesaw.io.json.JsonWriter\n\n// Static field initializations\nprivate static final JsonWriter INSTANCE = new JsonWriter();\nprivate static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());\n\n// Static initializer blocks\nstatic static {\n    register(Table.defaultWriterRegistry);\n}\n"
+      ],
+      "constructors": [
+        "JsonWriter() {\n}"
+      ],
+      "fieldDeclarations": [
+        "private static final JsonWriter INSTANCE = new JsonWriter();",
+        "private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());"
+      ],
+      "setters": [
+        "public void write(Table table, JsonWriteOptions options) {\n    ArrayNode output = mapper.createArrayNode();\n    if (options.asObjects()) {\n        for (int r = 0; r < table.rowCount(); r++) {\n            ObjectNode row = mapper.createObjectNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            output.add(row);\n        }\n    } else {\n        if (options.header()) {\n            ArrayNode row = mapper.createArrayNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.add(mapper.convertValue(table.column(c).name(), JsonNode.class));\n            }\n            output.add(row);\n        }\n        for (int r = 0; r < table.rowCount(); r++) {\n            ArrayNode row = mapper.createArrayNode();\n            for (int c = 0; c < table.columnCount(); c++) {\n                row.add(mapper.convertValue(table.get(r, c), JsonNode.class));\n            }\n            output.add(row);\n        }\n    }\n    try (Writer writer = options.destination().createWriter()) {\n        String str = mapper.writeValueAsString(output);\n        writer.write(str);\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n}"
+      ],
+      "imports": [
+        "com.fasterxml.jackson.databind.JsonNode",
+        "com.fasterxml.jackson.databind.Module",
+        "com.fasterxml.jackson.databind.ObjectMapper",
+        "com.fasterxml.jackson.databind.node.ArrayNode",
+        "com.fasterxml.jackson.databind.node.ObjectNode",
+        "com.fasterxml.jackson.datatype.jsr310.JavaTimeModule",
+        "tech.tablesaw.api.Table",
+        "tech.tablesaw.io.Destination",
+        "tech.tablesaw.io.RuntimeIOException",
+        "tech.tablesaw.io.WriterRegistry",
+        "tech.tablesaw.io.json.JsonWriteOptions.Builder"
+      ],
+      "testTemplate": "package tech.tablesaw.io.json;\n\npublic class JsonWritermethod_ObjectMapperregisterModuleFikaTest {\n\n    @Test\n    public void testWrite() {\n    }\n}",
+      "conditionCount": 7,
+      "callCount": 1,
+      "covered": true
+    },
+    {
+      "entryPoint": "tech.tablesaw.io.json.JsonReader.read(tech.tablesaw.io.json.JsonReadOptions)",
+      "thirdPartyMethod": "com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)",
+      "directCaller": "tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+      "path": [
+        "tech.tablesaw.io.json.JsonReader.read(tech.tablesaw.io.json.JsonReadOptions)",
+        "tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+        "com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)"
+      ],
+      "methodSources": [
+        "@Override\npublic Table read(JsonReadOptions options) {\n    JsonNode jsonObj = null;\n    try {\n        jsonObj = mapper.readTree(options.source().createReader(null));\n    } catch (IOException e) {\n        throw new RuntimeIOException(e);\n    }\n    if (options.path() != null) {\n        jsonObj = jsonObj.at(options.path());\n    }\n    if (!jsonObj.isArray()) {\n        throw new IllegalStateException(\"Only reading a JSON array is currently supported. The array must hold an array or object for each row.\");\n    }\n    if (jsonObj.size() == 0) {\n        return Table.create(options.tableName());\n    }\n    JsonNode firstNode = jsonObj.get(0);\n    if (firstNode.isArray()) {\n        return convertArrayOfArrays(jsonObj, options);\n    }\n    // PATH: Test should invoke the next JsonReader.convertArrayOfObjects(...) [step in execution path]\n    return convertArrayOfObjects(jsonObj, options);\n}",
+        "private Table convertArrayOfObjects(JsonNode jsonObj, ReadOptions options) {\n    // flatten each object inside the array\n    StringBuilder result = new StringBuilder(\"[\");\n    for (int i = 0; i < jsonObj.size(); i++) {\n        JsonNode rowObj = jsonObj.get(i);\n        String flattenedRow = null;\n        try {\n            flattenedRow = // PATH: Test should invoke the next ObjectMapper.writeValueAsString(...) [step in execution path]\n            JsonFlattener.flatten(mapper.writeValueAsString(rowObj));\n        } catch (JsonProcessingException e) {\n            throw new RuntimeIOException(e);\n        }\n        if (i != 0) {\n            result.append(\",\");\n        }\n        result.append(flattenedRow);\n    }\n    String flattenedJsonString = result.append(\"]\").toString();\n    JsonNode flattenedJsonObj = null;\n    try {\n        flattenedJsonObj = mapper.readTree(flattenedJsonString);\n    } catch (JsonProcessingException e) {\n        throw new RuntimeIOException(e);\n    }\n    Set<String> colNames = new LinkedHashSet<>();\n    for (JsonNode row : flattenedJsonObj) {\n        Iterator<String> fieldNames = row.fieldNames();\n        while (fieldNames.hasNext()) {\n            colNames.add(fieldNames.next());\n        } \n    }\n    List<String> columnNames = new ArrayList<>(colNames);\n    List<String[]> dataRows = new ArrayList<>();\n    for (JsonNode node : flattenedJsonObj) {\n        String[] arr = new String[columnNames.size()];\n        for (int i = 0; i < columnNames.size(); i++) {\n            if (node.has(columnNames.get(i))) {\n                arr[i] = node.get(columnNames.get(i)).asText();\n            } else {\n                arr[i] = null;\n            }\n        }\n        dataRows.add(arr);\n    }\n    return TableBuildingUtils.build(columnNames, dataRows, options);\n}"
+      ],
+      "constructors": [
+        "JsonReader() {\n}"
+      ],
+      "fieldDeclarations": [
+        "private static final JsonReader INSTANCE = new JsonReader();",
+        "private static final ObjectMapper mapper = new ObjectMapper();"
+      ],
+      "setters": [],
+      "imports": [
+        "com.fasterxml.jackson.core.JsonProcessingException",
+        "com.fasterxml.jackson.databind.JsonNode",
+        "com.fasterxml.jackson.databind.ObjectMapper",
+        "com.github.wnameless.json.flattener.JsonFlattener",
+        "tech.tablesaw.api.Table",
+        "tech.tablesaw.io.json.JsonReadOptions.Builder"
+      ],
+      "testTemplate": "package tech.tablesaw.io.json;\n\npublic class JsonReaderconvertArrayOfObjects_ObjectMapperwriteValueAsStringFikaTest {\n\n    @Test\n    public void testRead() {\n    }\n}",
+      "conditionCount": 11,
+      "callCount": 1,
+      "covered": false
+    }
+  ]
+}
