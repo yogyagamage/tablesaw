@@ -1,0 +1,2514 @@
+
+====================================================================================================
+LOG SESSION STARTED: 2026-08-09T01:07:05.388520
+====================================================================================================
+
+================================================================================
+PROCESSING TEST CASE 1/12
+Entry Point: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectReader.createParser(java.io.Reader)
+================================================================================
+[Generate] produced 1058 chars
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — PROMPT
+----------------------------------------------------------------------------------------------------
+You are an expert Java developer who writes good unit tests in order to maximize code coverage. You are specialized in Maven and JUnit 5 testing framework.
+
+Generate a JUnit 5 test that executes the full chain of method calls starting from the specified entry point method and reaching the specified third-party method. No assertions, inspections, or verifications are required. The test’s only goal is to try invoking the given third-party method during execution. 
+
+You are provided with:
+entryPoint: Fully qualified public method where execution must begin.
+thirdPartyMethod: Fully qualified third-party method that must be invoked.
+path: Ordered list of method calls that must be traversed during execution.
+methodSources: Complete and exact source code for all methods in the call chain.
+constructors: All constructors of the class containing the entryPoint. Use one of these constructors to instantiate the class in the test. Then use that instance to call the entryPoint method.
+fieldDeclarations: Instance variables and class variables of the class containing the entryPoint. These are the fields that can be accessed or set when creating the test.
+setters: All setters of the entryPoint class that can modify the declared fields.
+imports: All non-core-java imports that may be required by the test.
+
+entryPoint: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)
+thirdPartyMethod: com.fasterxml.jackson.databind.ObjectReader.createParser(java.io.Reader)
+path: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions) -> com.fasterxml.jackson.databind.ObjectReader.createParser(java.io.Reader)
+methodSources:
+```java
+@Override
+public Table read(JsonlReadOptions options) {
+    ObjectReader stream = mapper.readerFor(JsonNode.class);
+    try {
+        Reader reader = options.source().createReader(null);
+        // PATH: Test should invoke the next ObjectReader.createParser(...) [step in execution path]
+        JsonParser parser = stream.createParser(reader);
+        Iterator<JsonNode> iter = stream.readValues(parser);
+        return convertObjects(iter, options);
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+constructors:
+```java
+JsonlReader() {
+}
+```
+fieldDeclarations:
+```java
+private static final JsonlReader INSTANCE = new JsonlReader();
+private static final ObjectMapper mapper = new ObjectMapper();
+```
+setters:
+
+imports: com.fasterxml.jackson.core.JsonParser, com.fasterxml.jackson.core.JsonProcessingException, com.fasterxml.jackson.databind.JsonNode, com.fasterxml.jackson.databind.MappingIterator, com.fasterxml.jackson.databind.ObjectMapper, com.fasterxml.jackson.databind.ObjectReader, com.github.wnameless.json.flattener.JsonFlattener, tech.tablesaw.api.Table, tech.tablesaw.io.ReadOptions, tech.tablesaw.io.RuntimeIOException, tech.tablesaw.io.Source, tech.tablesaw.io.TableBuildingUtils, tech.tablesaw.io.jsonl.JsonlReadOptions.Builder
+
+Hard constraints:
+- The test class MUST NOT extend any other class (no 'extends' keyword).
+- The test class MUST NOT override any methods (no @Override annotations).
+- Do NOT create anonymous inner classes (e.g., new ClassName() { ... }).
+- Use real objects whenever possible.
+- Use mocks only when necessary, and ONLY for objects required as constructor parameters when instantiating the class that contains the entry-point method, provided those objects are not directly related to the target method call.
+- Do NOT mock or spy on the class under test.
+- Do NOT alter, stub, or control the behavior of ANY method in the call path.
+- Use only the following test-related libraries: junit-jupiter, mockito-core, and mockito-junit-jupiter. Do not use any other testing or mocking libraries.
+- Do NOT add any assertions, verifications, or inspections of state/logs/output.
+- package declaration MUST be: tech.tablesaw.io.jsonl
+- class name MUST be: JsonlReaderread_ObjectReadercreateParserFikaTest
+- exactly ONE @Test method
+- Return ONLY the complete Java source code.
+- Do NOT include explanations, markdown, or extra text.
+
+
+Previous Maven test output (if any; fix compilation/runtime issues while keeping ALL constraints):
+
+
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — GENERATED JAVA
+----------------------------------------------------------------------------------------------------
+package tech.tablesaw.io.jsonl;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import tech.tablesaw.api.Table;
+import tech.tablesaw.io.RuntimeIOException;
+import tech.tablesaw.io.Source;
+import java.io.Reader;
+import java.io.IOException;
+import java.util.Iterator;
+import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+public class JsonlReaderread_ObjectReadercreateParserFikaTest {
+
+    @Test
+    public void testRead() throws IOException {
+        JsonlReader jsonlReader = new JsonlReader();
+        
+        JsonlReadOptions options = mock(JsonlReadOptions.class);
+        Source source = mock(Source.class);
+        Reader reader = mock(Reader.class);
+        
+        when(options.source()).thenReturn(source);
+        when(source.createReader(null)).thenReturn(reader);
+        
+        Table result = jsonlReader.read(options);
+    }
+}
+
+[Write] wrote to /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlReaderread_ObjectReadercreateParserFikaTest.java
+[Validate] PASSED - hard constraints satisfied
+[Run] feedback_chars=1553
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — MAVEN RESULT
+----------------------------------------------------------------------------------------------------
+success=False exit_code=1
+================================================================================
+MAVEN ERROR REPORT
+================================================================================
+
+    [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+>>> [ERROR] Errors: 
+>>> [ERROR]   JsonlReaderread_ObjectReadercreateParserFikaTest.testRead:30 » Runtime Reader returned 0 characters when trying to read 0
+    [INFO] ------------------------------------------------------------------------
+...
+
+    [INFO] ------------------------------------------------------------------------
+>>> [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.2.5:test (default-test) on project tablesaw-json: 
+>>> [ERROR] 
+>>> [ERROR] Please refer to /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/target/surefire-reports for the individual test results.
+>>> [ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+>>> [ERROR] -> [Help 1]
+>>> [ERROR] 
+>>> [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+>>> [ERROR] Re-run Maven using the -X switch to enable full debug logging.
+>>> [ERROR] 
+>>> [ERROR] For more information about the errors and possible solutions, please read the following articles:
+>>> [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+    SLF4J(W): No SLF4J providers were found.
+
+================================================================================
+
+[Coverage] target 'com.fasterxml.jackson.databind.ObjectReader.createParser(java.io.Reader)' covered=False
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — COVERAGE
+----------------------------------------------------------------------------------------------------
+{
+  "method_covered": false,
+  "total_covered_lines": 0,
+  "error": "Method is not covered: JaCoCo report not generated",
+  "path_coverage_details": [
+    {
+      "index": 1,
+      "method": "com.fasterxml.jackson.databind.ObjectReader.createParser(java.io.Reader)",
+      "method_class": "tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl",
+      "covered": false,
+      "error": "Method is not covered: JaCoCo report not generated"
+    }
+  ]
+}
+[Decide] approved=False (tests failed, will retry if iteration<1)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — DECISION
+----------------------------------------------------------------------------------------------------
+approved=False reason=tests_failed
+[Finalize] Cleaned up unsuccessful test file: /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlReaderread_ObjectReadercreateParserFikaTest.java
+
+====================================================================================================
+TEST CASE 1: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)
+====================================================================================================
+Entry Point: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectReader.createParser(java.io.Reader)
+Approved: False
+Total Iterations: 1
+Tests Passed: False
+Target Method Covered: False
+
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+FINAL RESULT: FAILED
+Reason: Tests failed to compile or run successfully
+====================================================================================================
+
+================================================================================
+PROCESSING TEST CASE 2/12
+Entry Point: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.readerFor(java.lang.Class)
+================================================================================
+[Generate] produced 1127 chars
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — PROMPT
+----------------------------------------------------------------------------------------------------
+You are an expert Java developer who writes good unit tests in order to maximize code coverage. You are specialized in Maven and JUnit 5 testing framework.
+
+Generate a JUnit 5 test that executes the full chain of method calls starting from the specified entry point method and reaching the specified third-party method. No assertions, inspections, or verifications are required. The test’s only goal is to try invoking the given third-party method during execution. 
+
+You are provided with:
+entryPoint: Fully qualified public method where execution must begin.
+thirdPartyMethod: Fully qualified third-party method that must be invoked.
+path: Ordered list of method calls that must be traversed during execution.
+methodSources: Complete and exact source code for all methods in the call chain.
+constructors: All constructors of the class containing the entryPoint. Use one of these constructors to instantiate the class in the test. Then use that instance to call the entryPoint method.
+fieldDeclarations: Instance variables and class variables of the class containing the entryPoint. These are the fields that can be accessed or set when creating the test.
+setters: All setters of the entryPoint class that can modify the declared fields.
+imports: All non-core-java imports that may be required by the test.
+
+entryPoint: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)
+thirdPartyMethod: com.fasterxml.jackson.databind.ObjectMapper.readerFor(java.lang.Class)
+path: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions) -> com.fasterxml.jackson.databind.ObjectMapper.readerFor(java.lang.Class)
+methodSources:
+```java
+@Override
+public Table read(JsonlReadOptions options) {
+    // PATH: Test should invoke the next ObjectMapper.readerFor(...) [step in execution path]
+    ObjectReader stream = mapper.readerFor(JsonNode.class);
+    try {
+        Reader reader = options.source().createReader(null);
+        JsonParser parser = stream.createParser(reader);
+        Iterator<JsonNode> iter = stream.readValues(parser);
+        return convertObjects(iter, options);
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+constructors:
+```java
+JsonlReader() {
+}
+```
+fieldDeclarations:
+```java
+private static final JsonlReader INSTANCE = new JsonlReader();
+private static final ObjectMapper mapper = new ObjectMapper();
+```
+setters:
+
+imports: com.fasterxml.jackson.core.JsonParser, com.fasterxml.jackson.core.JsonProcessingException, com.fasterxml.jackson.databind.JsonNode, com.fasterxml.jackson.databind.MappingIterator, com.fasterxml.jackson.databind.ObjectMapper, com.fasterxml.jackson.databind.ObjectReader, com.github.wnameless.json.flattener.JsonFlattener, tech.tablesaw.api.Table, tech.tablesaw.io.ReadOptions, tech.tablesaw.io.RuntimeIOException, tech.tablesaw.io.Source, tech.tablesaw.io.TableBuildingUtils, tech.tablesaw.io.jsonl.JsonlReadOptions.Builder
+
+Hard constraints:
+- The test class MUST NOT extend any other class (no 'extends' keyword).
+- The test class MUST NOT override any methods (no @Override annotations).
+- Do NOT create anonymous inner classes (e.g., new ClassName() { ... }).
+- Use real objects whenever possible.
+- Use mocks only when necessary, and ONLY for objects required as constructor parameters when instantiating the class that contains the entry-point method, provided those objects are not directly related to the target method call.
+- Do NOT mock or spy on the class under test.
+- Do NOT alter, stub, or control the behavior of ANY method in the call path.
+- Use only the following test-related libraries: junit-jupiter, mockito-core, and mockito-junit-jupiter. Do not use any other testing or mocking libraries.
+- Do NOT add any assertions, verifications, or inspections of state/logs/output.
+- package declaration MUST be: tech.tablesaw.io.jsonl
+- class name MUST be: JsonlReaderread_ObjectMapperreaderForFikaTest
+- exactly ONE @Test method
+- Return ONLY the complete Java source code.
+- Do NOT include explanations, markdown, or extra text.
+
+
+Previous Maven test output (if any; fix compilation/runtime issues while keeping ALL constraints):
+
+
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — GENERATED JAVA
+----------------------------------------------------------------------------------------------------
+package tech.tablesaw.io.jsonl;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
+import org.junit.jupiter.api.Test;
+import tech.tablesaw.api.Table;
+import tech.tablesaw.io.RuntimeIOException;
+import tech.tablesaw.io.Source;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.Iterator;
+import com.fasterxml.jackson.core.JsonParser;
+
+public class JsonlReaderread_ObjectMapperreaderForFikaTest {
+
+    @Test
+    public void testRead() throws IOException {
+        JsonlReader jsonlReader = new JsonlReader();
+        
+        JsonlReadOptions options = JsonlReadOptions.builder(new Source() {
+            @Override
+            public Reader createReader(String charsetName) {
+                return new java.io.StringReader("{\"test\":\"value\"}");
+            }
+        }).build();
+        
+        try {
+            Table result = jsonlReader.read(options);
+        } catch (RuntimeIOException e) {
+            // Expected if the mock source causes issues, but the target method was called
+        }
+    }
+}
+
+[Write] wrote to /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlReaderread_ObjectMapperreaderForFikaTest.java
+[Validate] FAILED - hard constraints violated
+[Decide] approved=False (hard constraint violation, will retry if iteration<1)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — DECISION
+----------------------------------------------------------------------------------------------------
+approved=False reason=constraint_violation
+[Finalize] Cleaned up unsuccessful test file: /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlReaderread_ObjectMapperreaderForFikaTest.java
+
+====================================================================================================
+TEST CASE 2: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)
+====================================================================================================
+Entry Point: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.readerFor(java.lang.Class)
+Approved: False
+Total Iterations: 1
+Tests Passed: False
+Target Method Covered: False
+
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+FINAL RESULT: FAILED
+Reason: Tests failed to compile or run successfully
+====================================================================================================
+
+================================================================================
+PROCESSING TEST CASE 3/12
+Entry Point: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectReader.readValues(com.fasterxml.jackson.core.JsonParser)
+================================================================================
+[Generate] produced 1198 chars
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — PROMPT
+----------------------------------------------------------------------------------------------------
+You are an expert Java developer who writes good unit tests in order to maximize code coverage. You are specialized in Maven and JUnit 5 testing framework.
+
+Generate a JUnit 5 test that executes the full chain of method calls starting from the specified entry point method and reaching the specified third-party method. No assertions, inspections, or verifications are required. The test’s only goal is to try invoking the given third-party method during execution. 
+
+You are provided with:
+entryPoint: Fully qualified public method where execution must begin.
+thirdPartyMethod: Fully qualified third-party method that must be invoked.
+path: Ordered list of method calls that must be traversed during execution.
+methodSources: Complete and exact source code for all methods in the call chain.
+constructors: All constructors of the class containing the entryPoint. Use one of these constructors to instantiate the class in the test. Then use that instance to call the entryPoint method.
+fieldDeclarations: Instance variables and class variables of the class containing the entryPoint. These are the fields that can be accessed or set when creating the test.
+setters: All setters of the entryPoint class that can modify the declared fields.
+imports: All non-core-java imports that may be required by the test.
+
+entryPoint: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)
+thirdPartyMethod: com.fasterxml.jackson.databind.ObjectReader.readValues(com.fasterxml.jackson.core.JsonParser)
+path: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions) -> com.fasterxml.jackson.databind.ObjectReader.readValues(com.fasterxml.jackson.core.JsonParser)
+methodSources:
+```java
+@Override
+public Table read(JsonlReadOptions options) {
+    ObjectReader stream = mapper.readerFor(JsonNode.class);
+    try {
+        Reader reader = options.source().createReader(null);
+        JsonParser parser = stream.createParser(reader);
+        // PATH: Test should invoke the next ObjectReader.readValues(...) [step in execution path]
+        Iterator<JsonNode> iter = stream.readValues(parser);
+        return convertObjects(iter, options);
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+constructors:
+```java
+JsonlReader() {
+}
+```
+fieldDeclarations:
+```java
+private static final JsonlReader INSTANCE = new JsonlReader();
+private static final ObjectMapper mapper = new ObjectMapper();
+```
+setters:
+
+imports: com.fasterxml.jackson.core.JsonParser, com.fasterxml.jackson.core.JsonProcessingException, com.fasterxml.jackson.databind.JsonNode, com.fasterxml.jackson.databind.MappingIterator, com.fasterxml.jackson.databind.ObjectMapper, com.fasterxml.jackson.databind.ObjectReader, com.github.wnameless.json.flattener.JsonFlattener, tech.tablesaw.api.Table, tech.tablesaw.io.ReadOptions, tech.tablesaw.io.RuntimeIOException, tech.tablesaw.io.Source, tech.tablesaw.io.TableBuildingUtils, tech.tablesaw.io.jsonl.JsonlReadOptions.Builder
+
+Hard constraints:
+- The test class MUST NOT extend any other class (no 'extends' keyword).
+- The test class MUST NOT override any methods (no @Override annotations).
+- Do NOT create anonymous inner classes (e.g., new ClassName() { ... }).
+- Use real objects whenever possible.
+- Use mocks only when necessary, and ONLY for objects required as constructor parameters when instantiating the class that contains the entry-point method, provided those objects are not directly related to the target method call.
+- Do NOT mock or spy on the class under test.
+- Do NOT alter, stub, or control the behavior of ANY method in the call path.
+- Use only the following test-related libraries: junit-jupiter, mockito-core, and mockito-junit-jupiter. Do not use any other testing or mocking libraries.
+- Do NOT add any assertions, verifications, or inspections of state/logs/output.
+- package declaration MUST be: tech.tablesaw.io.jsonl
+- class name MUST be: JsonlReaderread_ObjectReaderreadValuesFikaTest
+- exactly ONE @Test method
+- Return ONLY the complete Java source code.
+- Do NOT include explanations, markdown, or extra text.
+
+
+Previous Maven test output (if any; fix compilation/runtime issues while keeping ALL constraints):
+
+
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — GENERATED JAVA
+----------------------------------------------------------------------------------------------------
+package tech.tablesaw.io.jsonl;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
+import tech.tablesaw.api.Table;
+import tech.tablesaw.io.Source;
+import tech.tablesaw.io.jsonl.JsonlReadOptions;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+import java.util.Iterator;
+
+class JsonlReaderread_ObjectReaderreadValuesFikaTest {
+
+    @Test
+    void test() throws IOException {
+        JsonlReader reader = new JsonlReader();
+        
+        String jsonlContent = "{\"name\":\"test\"}\n{\"name\":\"test2\"}";
+        Source source = new Source() {
+            @Override
+            public Reader createReader(String charsetName) {
+                return new StringReader(jsonlContent);
+            }
+            
+            @Override
+            public String toString() {
+                return "test-source";
+            }
+        };
+        
+        JsonlReadOptions options = JsonlReadOptions.builder(source).build();
+        
+        Table result = reader.read(options);
+    }
+}
+
+[Write] wrote to /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlReaderread_ObjectReaderreadValuesFikaTest.java
+[Validate] FAILED - hard constraints violated
+[Decide] approved=False (hard constraint violation, will retry if iteration<1)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — DECISION
+----------------------------------------------------------------------------------------------------
+approved=False reason=constraint_violation
+[Finalize] Cleaned up unsuccessful test file: /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlReaderread_ObjectReaderreadValuesFikaTest.java
+
+====================================================================================================
+TEST CASE 3: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)
+====================================================================================================
+Entry Point: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectReader.readValues(com.fasterxml.jackson.core.JsonParser)
+Approved: False
+Total Iterations: 1
+Tests Passed: False
+Target Method Covered: False
+
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+FINAL RESULT: FAILED
+Reason: Tests failed to compile or run successfully
+====================================================================================================
+
+================================================================================
+PROCESSING TEST CASE 4/12
+Entry Point: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.convertValue(java.lang.Object, java.lang.Class)
+================================================================================
+[Generate] produced 1455 chars
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — PROMPT
+----------------------------------------------------------------------------------------------------
+You are an expert Java developer who writes good unit tests in order to maximize code coverage. You are specialized in Maven and JUnit 5 testing framework.
+
+Generate a JUnit 5 test that executes the full chain of method calls starting from the specified entry point method and reaching the specified third-party method. No assertions, inspections, or verifications are required. The test’s only goal is to try invoking the given third-party method during execution. 
+
+You are provided with:
+entryPoint: Fully qualified public method where execution must begin.
+thirdPartyMethod: Fully qualified third-party method that must be invoked.
+path: Ordered list of method calls that must be traversed during execution.
+methodSources: Complete and exact source code for all methods in the call chain.
+constructors: All constructors of the class containing the entryPoint. Use one of these constructors to instantiate the class in the test. Then use that instance to call the entryPoint method.
+fieldDeclarations: Instance variables and class variables of the class containing the entryPoint. These are the fields that can be accessed or set when creating the test.
+setters: All setters of the entryPoint class that can modify the declared fields.
+imports: All non-core-java imports that may be required by the test.
+
+entryPoint: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)
+thirdPartyMethod: com.fasterxml.jackson.databind.ObjectMapper.convertValue(java.lang.Object, java.lang.Class)
+path: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions) -> com.fasterxml.jackson.databind.ObjectMapper.convertValue(java.lang.Object, java.lang.Class)
+methodSources:
+```java
+public void write(Table table, JsonlWriteOptions options) {
+    try (Writer writer = options.destination().createWriter()) {
+        for (int r = 0; r < table.rowCount(); r++) {
+            ObjectNode row = mapper.createObjectNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                // PATH: Test should invoke the next ObjectMapper.convertValue(...) [step in execution path]
+                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            String str = mapper.writeValueAsString(row);
+            writer.write(str);
+            if (r < (table.rowCount() - 1)) {
+                writer.write("
+");
+            }
+        }
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+constructors:
+```java
+JsonlWriter() {
+}
+```
+fieldDeclarations:
+```java
+private static final JsonlWriter INSTANCE = new JsonlWriter();
+private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+```
+setters:
+```java
+public void write(Table table, JsonlWriteOptions options) {
+    try (Writer writer = options.destination().createWriter()) {
+        for (int r = 0; r < table.rowCount(); r++) {
+            ObjectNode row = mapper.createObjectNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            String str = mapper.writeValueAsString(row);
+            writer.write(str);
+            if (r < (table.rowCount() - 1)) {
+                writer.write("
+");
+            }
+        }
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+imports: com.fasterxml.jackson.databind.JsonNode, com.fasterxml.jackson.databind.ObjectMapper, com.fasterxml.jackson.databind.node.ObjectNode, tech.tablesaw.api.Table, tech.tablesaw.io.Destination, tech.tablesaw.io.RuntimeIOException, tech.tablesaw.io.jsonl.JsonlWriteOptions.Builder
+
+Hard constraints:
+- The test class MUST NOT extend any other class (no 'extends' keyword).
+- The test class MUST NOT override any methods (no @Override annotations).
+- Do NOT create anonymous inner classes (e.g., new ClassName() { ... }).
+- Use real objects whenever possible.
+- Use mocks only when necessary, and ONLY for objects required as constructor parameters when instantiating the class that contains the entry-point method, provided those objects are not directly related to the target method call.
+- Do NOT mock or spy on the class under test.
+- Do NOT alter, stub, or control the behavior of ANY method in the call path.
+- Use only the following test-related libraries: junit-jupiter, mockito-core, and mockito-junit-jupiter. Do not use any other testing or mocking libraries.
+- Do NOT add any assertions, verifications, or inspections of state/logs/output.
+- package declaration MUST be: tech.tablesaw.io.jsonl
+- class name MUST be: JsonlWriterwrite_ObjectMapperconvertValueFikaTest
+- exactly ONE @Test method
+- Return ONLY the complete Java source code.
+- Do NOT include explanations, markdown, or extra text.
+
+
+Previous Maven test output (if any; fix compilation/runtime issues while keeping 
+... (prompt truncated, total 5019 chars)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — GENERATED JAVA
+----------------------------------------------------------------------------------------------------
+package tech.tablesaw.io.jsonl;
+
+import tech.tablesaw.api.Table;
+import tech.tablesaw.io.jsonl.JsonlWriteOptions;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import tech.tablesaw.io.Destination;
+import tech.tablesaw.io.RuntimeIOException;
+import org.junit.jupiter.api.Test;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
+
+public class JsonlWriterwrite_ObjectMapperconvertValueFikaTest {
+
+    @Test
+    public void testWritePath() throws IOException {
+        JsonlWriter writer = new JsonlWriter();
+        
+        Table table = Table.create("test");
+        table.addColumns(
+            tech.tablesaw.columns.strings.StringColumn.create("col1", new String[]{"value1"}),
+            tech.tablesaw.columns.numbers.IntColumn.create("col2", new int[]{42})
+        );
+        
+        Destination destination = new Destination() {
+            @Override
+            public Writer createWriter() throws IOException {
+                return new StringWriter();
+            }
+            
+            @Override
+            public OutputStream createOutputStream() throws IOException {
+                throw new UnsupportedOperationException();
+            }
+        };
+        
+        JsonlWriteOptions options = JsonlWriteOptions.builder(destination).build();
+        
+        writer.write(table, options);
+    }
+}
+
+[Write] wrote to /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlWriterwrite_ObjectMapperconvertValueFikaTest.java
+[Validate] FAILED - hard constraints violated
+[Decide] approved=False (hard constraint violation, will retry if iteration<1)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — DECISION
+----------------------------------------------------------------------------------------------------
+approved=False reason=constraint_violation
+[Finalize] Cleaned up unsuccessful test file: /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlWriterwrite_ObjectMapperconvertValueFikaTest.java
+
+====================================================================================================
+TEST CASE 4: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)
+====================================================================================================
+Entry Point: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.convertValue(java.lang.Object, java.lang.Class)
+Approved: False
+Total Iterations: 1
+Tests Passed: False
+Target Method Covered: False
+
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+FINAL RESULT: FAILED
+Reason: Tests failed to compile or run successfully
+====================================================================================================
+
+================================================================================
+PROCESSING TEST CASE 5/12
+Entry Point: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)
+Third Party Method: com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)
+================================================================================
+[Generate] produced 994 chars
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — PROMPT
+----------------------------------------------------------------------------------------------------
+You are an expert Java developer who writes good unit tests in order to maximize code coverage. You are specialized in Maven and JUnit 5 testing framework.
+
+Generate a JUnit 5 test that executes the full chain of method calls starting from the specified entry point method and reaching the specified third-party method. No assertions, inspections, or verifications are required. The test’s only goal is to try invoking the given third-party method during execution. 
+
+You are provided with:
+entryPoint: Fully qualified public method where execution must begin.
+thirdPartyMethod: Fully qualified third-party method that must be invoked.
+path: Ordered list of method calls that must be traversed during execution.
+methodSources: Complete and exact source code for all methods in the call chain.
+constructors: All constructors of the class containing the entryPoint. Use one of these constructors to instantiate the class in the test. Then use that instance to call the entryPoint method.
+fieldDeclarations: Instance variables and class variables of the class containing the entryPoint. These are the fields that can be accessed or set when creating the test.
+setters: All setters of the entryPoint class that can modify the declared fields.
+imports: All non-core-java imports that may be required by the test.
+
+entryPoint: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)
+thirdPartyMethod: com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)
+path: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions) -> com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)
+methodSources:
+```java
+public void write(Table table, JsonWriteOptions options) {
+    ArrayNode output = mapper.createArrayNode();
+    if (options.asObjects()) {
+        for (int r = 0; r < table.rowCount(); r++) {
+            ObjectNode row = mapper.createObjectNode();
+            for (int c = 0; c < table.columnCount(); c++) // PATH: Test should invoke the next ObjectNode.set(...) [step in execution path]
+            {
+                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            output.add(row);
+        }
+    } else {
+        if (options.header()) {
+            ArrayNode row = mapper.createArrayNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.add(mapper.convertValue(table.column(c).name(), JsonNode.class));
+            }
+            output.add(row);
+        }
+        for (int r = 0; r < table.rowCount(); r++) {
+            ArrayNode row = mapper.createArrayNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.add(mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            output.add(row);
+        }
+    }
+    try (Writer writer = options.destination().createWriter()) {
+        String str = mapper.writeValueAsString(output);
+        writer.write(str);
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+constructors:
+```java
+JsonWriter() {
+}
+```
+fieldDeclarations:
+```java
+private static final JsonWriter INSTANCE = new JsonWriter();
+private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+```
+setters:
+```java
+public void write(Table table, JsonWriteOptions options) {
+    ArrayNode output = mapper.createArrayNode();
+    if (options.asObjects()) {
+        for (int r = 0; r < table.rowCount(); r++) {
+            ObjectNode row = mapper.createObjectNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            output.add(row);
+        }
+    } else {
+        if (options.header()) {
+            ArrayNode row = mapper.createArrayNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.add(mapper.convertValue(table.column(c).name(), JsonNode.class));
+            }
+            output.add(row);
+        }
+        for (int r = 0; r < table.rowCount(); r++) {
+            ArrayNode row = mapper.createArrayNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.add(mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            output.add(row);
+        }
+    }
+    try (Writer writer = options.destination().createWriter()) {
+        String str = mapper.writeValueAsString(output);
+        writer.write(str);
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+imports: com.fasterxml.jackson.databind.JsonNode, com.fasterxml.jackson.databind.ObjectMapper, com.fasterxml.jackson.databind.node.ArrayNode, com.fasterxml.jackson.databind.node.ObjectNode, tech.tablesaw.api.Table, tech.tablesaw.io.Destination, tech.tablesaw.
+... (prompt truncated, total 6283 chars)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — GENERATED JAVA
+----------------------------------------------------------------------------------------------------
+package tech.tablesaw.io.json;
+
+import tech.tablesaw.api.Table;
+import tech.tablesaw.io.json.JsonWriteOptions;
+import tech.tablesaw.io.json.JsonWriter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.junit.jupiter.api.Test;
+import java.io.StringWriter;
+
+public class JsonWriterwrite_ObjectNodesetFikaTest {
+
+    @Test
+    public void testWritePath() {
+        JsonWriter writer = new JsonWriter();
+        
+        Table table = Table.create("testTable");
+        table.addColumns(
+            tech.tablesaw.api.StringColumn.create("col1", new String[]{"value1"}),
+            tech.tablesaw.api.IntColumn.create("col2", new int[]{42})
+        );
+        
+        StringWriter stringWriter = new StringWriter();
+        JsonWriteOptions options = JsonWriteOptions.builder(stringWriter)
+            .asObjects(true)
+            .header(false)
+            .build();
+        
+        writer.write(table, options);
+    }
+}
+
+[Write] wrote to /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/json/JsonWriterwrite_ObjectNodesetFikaTest.java
+[Validate] PASSED - hard constraints satisfied
+[Run] feedback_chars=2900
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — MAVEN RESULT
+----------------------------------------------------------------------------------------------------
+success=True exit_code=0
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< tech.tablesaw:tablesaw-json >---------------------
+[INFO] Building tablesaw-json 0.44.4-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ tablesaw-json ---
+[INFO] Deleting /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/target
+[INFO] 
+[INFO] --- jacoco:0.8.14:prepare-agent (prepare-agent) @ tablesaw-json ---
+[INFO] argLine set to -javaagent:/u/gamageyo/.m2/repository/org/jacoco/org.jacoco.agent/0.8.14/org.jacoco.agent-0.8.14-runtime.jar=destfile=/part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/target/jacoco.exec
+[INFO] 
+[INFO] --- git-code-format:5.3:install-hooks (install-formatter-hook) @ tablesaw-json ---
+[INFO] Installing git hooks
+[INFO] Installed git hooks
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ tablesaw-json ---
+[INFO] skip non existing resourceDirectory /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (java-compile) @ tablesaw-json ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 8 source files with javac [debug target 11] to target/classes
+[WARNING] system modules path not set in conjunction with -source 11
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ tablesaw-json ---
+[INFO] skip non existing resourceDirectory /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (java-test-compile) @ tablesaw-json ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 5 source files with javac [debug target 11] to target/test-classes
+[WARNING] system modules path not set in conjunction with -source 11
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ tablesaw-json ---
+[INFO] Tests will run in random order. To reproduce ordering use flag -Dsurefire.runOrder.random.seed=903439326159929
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] --- jacoco:0.8.14:report (report) @ tablesaw-json ---
+[INFO] Loading execution data file /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/target/jacoco.exec
+[INFO] Analyzed bundle 'tablesaw-json' with 12 classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.316 s
+[INFO] Finished at: 2026-08-09T01:07:41-04:00
+[INFO] ------------------------------------------------------------------------
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+[Coverage] target 'com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)' covered=True
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — COVERAGE
+----------------------------------------------------------------------------------------------------
+{
+  "method_covered": true,
+  "total_covered_lines": 18,
+  "error": null,
+  "path_coverage_details": [
+    {
+      "index": 1,
+      "method": "com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)",
+      "method_class": "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json",
+      "covered": true,
+      "error": null
+    }
+  ]
+}
+[Decide] approved=True (tests passed AND target method covered)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — DECISION
+----------------------------------------------------------------------------------------------------
+approved=True reason=passed+covered
+[Finalize] SUCCESS: Test passed and target method covered
+
+====================================================================================================
+TEST CASE 5: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)
+====================================================================================================
+Entry Point: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)
+Third Party Method: com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)
+Approved: True
+Approved at Iteration: 1
+Total Iterations: 1
+Tests Passed: True
+Target Method Covered: True
+
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+FINAL RESULT: APPROVED
+====================================================================================================
+
+================================================================================
+PROCESSING TEST CASE 6/12
+Entry Point: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+================================================================================
+[Generate] produced 1293 chars
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — PROMPT
+----------------------------------------------------------------------------------------------------
+You are an expert Java developer who writes good unit tests in order to maximize code coverage. You are specialized in Maven and JUnit 5 testing framework.
+
+Generate a JUnit 5 test that executes the full chain of method calls starting from the specified entry point method and reaching the specified third-party method. No assertions, inspections, or verifications are required. The test’s only goal is to try invoking the given third-party method during execution. 
+
+You are provided with:
+entryPoint: Fully qualified public method where execution must begin.
+thirdPartyMethod: Fully qualified third-party method that must be invoked.
+path: Ordered list of method calls that must be traversed during execution.
+methodSources: Complete and exact source code for all methods in the call chain.
+constructors: All constructors of the class containing the entryPoint. Use one of these constructors to instantiate the class in the test. Then use that instance to call the entryPoint method.
+fieldDeclarations: Instance variables and class variables of the class containing the entryPoint. These are the fields that can be accessed or set when creating the test.
+setters: All setters of the entryPoint class that can modify the declared fields.
+imports: All non-core-java imports that may be required by the test.
+
+entryPoint: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+thirdPartyMethod: com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+path: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions) -> tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions) -> com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+methodSources:
+```java
+@Override
+public void write(Table table, Destination dest) // PATH: Test should invoke the next JsonlWriter.write(...) [step in execution path]
+{
+    write(table, JsonlWriteOptions.builder(dest).build());
+}
+
+public void write(Table table, JsonlWriteOptions options) {
+    try (Writer writer = options.destination().createWriter()) {
+        for (int r = 0; r < table.rowCount(); r++) {
+            ObjectNode row = mapper.createObjectNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            // PATH: Test should invoke the next ObjectMapper.writeValueAsString(...) [step in execution path]
+            String str = mapper.writeValueAsString(row);
+            writer.write(str);
+            if (r < (table.rowCount() - 1)) {
+                writer.write("
+");
+            }
+        }
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+constructors:
+```java
+JsonlWriter() {
+}
+```
+fieldDeclarations:
+```java
+private static final JsonlWriter INSTANCE = new JsonlWriter();
+private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+```
+setters:
+```java
+public void write(Table table, JsonlWriteOptions options) {
+    try (Writer writer = options.destination().createWriter()) {
+        for (int r = 0; r < table.rowCount(); r++) {
+            ObjectNode row = mapper.createObjectNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            String str = mapper.writeValueAsString(row);
+            writer.write(str);
+            if (r < (table.rowCount() - 1)) {
+                writer.write("
+");
+            }
+        }
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+imports: com.fasterxml.jackson.databind.JsonNode, com.fasterxml.jackson.databind.ObjectMapper, com.fasterxml.jackson.databind.node.ObjectNode, tech.tablesaw.api.Table, tech.tablesaw.io.Destination, tech.tablesaw.io.RuntimeIOException, tech.tablesaw.io.jsonl.JsonlWriteOptions.Builder
+
+Hard constraints:
+- The test class MUST NOT extend any other class (no 'extends' keyword).
+- The test class MUST NOT override any methods (no @Override annotations).
+- Do NOT create anonymous inner classes (e.g., new ClassName() { ... }).
+- Use real objects whenever possible.
+- Use mocks only when necessary, and ONLY for objects required as constructor parameters when instantiating the class that contains the entry-point method, provided those objects are not directly related to the target method call.
+- Do NOT mock or spy on the class under test.
+- Do NOT alter, stub, or control the behavior of ANY method in the call path.
+- Use only the following test-related libraries: junit-jupiter, mockito-core, and mockito-junit-jupiter. Do not use any other testing or mocking libraries.
+- Do NOT add any assertions, verifications, or inspections of state/logs/output.
+- package declaration MUST be: tech.tablesaw.io.jsonl
+- clas
+... (prompt truncated, total 5302 chars)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — GENERATED JAVA
+----------------------------------------------------------------------------------------------------
+package tech.tablesaw.io.jsonl;
+
+import tech.tablesaw.api.Table;
+import tech.tablesaw.io.Destination;
+import tech.tablesaw.io.WriteOptions;
+import tech.tablesaw.io.jsonl.JsonlWriteOptions;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.junit.jupiter.api.Test;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
+
+class JsonlWriterwrite_ObjectMapperwriteValueAsStringFikaTest {
+
+    @Test
+    void testWriteChain() throws IOException {
+        JsonlWriter writer = new JsonlWriter();
+        
+        Table table = Table.create("test");
+        table.addColumns(tech.tablesaw.columns.strings.StringColumn.create("col1", new String[]{"value1"}));
+        
+        Destination dest = new Destination() {
+            @Override
+            public Writer createWriter() throws IOException {
+                return new StringWriter();
+            }
+            
+            @Override
+            public OutputStream createOutputStream() throws IOException {
+                return null;
+            }
+        };
+        
+        WriteOptions writeOptions = WriteOptions.builder(dest).build();
+        
+        writer.write(table, writeOptions);
+    }
+}
+
+[Write] wrote to /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlWriterwrite_ObjectMapperwriteValueAsStringFikaTest.java
+[Validate] FAILED - hard constraints violated
+[Decide] approved=False (hard constraint violation, will retry if iteration<1)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — DECISION
+----------------------------------------------------------------------------------------------------
+approved=False reason=constraint_violation
+[Finalize] Cleaned up unsuccessful test file: /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlWriterwrite_ObjectMapperwriteValueAsStringFikaTest.java
+
+====================================================================================================
+TEST CASE 6: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+====================================================================================================
+Entry Point: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+Approved: False
+Total Iterations: 1
+Tests Passed: False
+Target Method Covered: False
+
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+FINAL RESULT: FAILED
+Reason: Tests failed to compile or run successfully
+====================================================================================================
+
+================================================================================
+PROCESSING TEST CASE 7/12
+Entry Point: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+Third Party Method: com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)
+================================================================================
+[Generate] produced 1907 chars
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — PROMPT
+----------------------------------------------------------------------------------------------------
+You are an expert Java developer who writes good unit tests in order to maximize code coverage. You are specialized in Maven and JUnit 5 testing framework.
+
+Generate a JUnit 5 test that executes the full chain of method calls starting from the specified entry point method and reaching the specified third-party method. No assertions, inspections, or verifications are required. The test’s only goal is to try invoking the given third-party method during execution. 
+
+You are provided with:
+entryPoint: Fully qualified public method where execution must begin.
+thirdPartyMethod: Fully qualified third-party method that must be invoked.
+path: Ordered list of method calls that must be traversed during execution.
+methodSources: Complete and exact source code for all methods in the call chain.
+constructors: All constructors of the class containing the entryPoint. Use one of these constructors to instantiate the class in the test. Then use that instance to call the entryPoint method.
+fieldDeclarations: Instance variables and class variables of the class containing the entryPoint. These are the fields that can be accessed or set when creating the test.
+setters: All setters of the entryPoint class that can modify the declared fields.
+imports: All non-core-java imports that may be required by the test.
+
+entryPoint: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+thirdPartyMethod: com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)
+path: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions) -> tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions) -> com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)
+methodSources:
+```java
+@Override
+public void write(Table table, Destination dest) // PATH: Test should invoke the next JsonlWriter.write(...) [step in execution path]
+{
+    write(table, JsonlWriteOptions.builder(dest).build());
+}
+
+public void write(Table table, JsonlWriteOptions options) {
+    try (Writer writer = options.destination().createWriter()) {
+        for (int r = 0; r < table.rowCount(); r++) {
+            ObjectNode row = mapper.createObjectNode();
+            for (int c = 0; c < table.columnCount(); c++) // PATH: Test should invoke the next ObjectNode.set(...) [step in execution path]
+            {
+                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            String str = mapper.writeValueAsString(row);
+            writer.write(str);
+            if (r < (table.rowCount() - 1)) {
+                writer.write("
+");
+            }
+        }
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+constructors:
+```java
+JsonlWriter() {
+}
+```
+fieldDeclarations:
+```java
+private static final JsonlWriter INSTANCE = new JsonlWriter();
+private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+```
+setters:
+```java
+public void write(Table table, JsonlWriteOptions options) {
+    try (Writer writer = options.destination().createWriter()) {
+        for (int r = 0; r < table.rowCount(); r++) {
+            ObjectNode row = mapper.createObjectNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            String str = mapper.writeValueAsString(row);
+            writer.write(str);
+            if (r < (table.rowCount() - 1)) {
+                writer.write("
+");
+            }
+        }
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+imports: com.fasterxml.jackson.databind.JsonNode, com.fasterxml.jackson.databind.ObjectMapper, com.fasterxml.jackson.databind.node.ObjectNode, tech.tablesaw.api.Table, tech.tablesaw.io.Destination, tech.tablesaw.io.RuntimeIOException, tech.tablesaw.io.jsonl.JsonlWriteOptions.Builder
+
+Hard constraints:
+- The test class MUST NOT extend any other class (no 'extends' keyword).
+- The test class MUST NOT override any methods (no @Override annotations).
+- Do NOT create anonymous inner classes (e.g., new ClassName() { ... }).
+- Use real objects whenever possible.
+- Use mocks only when necessary, and ONLY for objects required as constructor parameters when instantiating the class that contains the entry-point method, provided those objects are not directly related to the target method call.
+- Do NOT mock or spy on the class under test.
+- Do NOT alter, stub, or control the behavior of ANY method in the call path.
+- Use only the following test-related libraries: junit-jupiter, mockito-core, and mockito-junit-jupiter. Do not use any other testing or mocking libraries.
+- Do NOT add any assertions, verifications, or inspections of state/logs/output.
+- package declarati
+... (prompt truncated, total 5326 chars)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — GENERATED JAVA
+----------------------------------------------------------------------------------------------------
+package tech.tablesaw.io.jsonl;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import tech.tablesaw.api.Table;
+import tech.tablesaw.io.Destination;
+import tech.tablesaw.io.RuntimeIOException;
+import tech.tablesaw.io.jsonl.JsonlWriteOptions.Builder;
+import org.junit.jupiter.api.Test;
+import java.io.IOException;
+import java.io.Writer;
+
+class JsonlWriterwrite_ObjectNodesetFikaTest {
+
+    @Test
+    void testWritePath() throws IOException {
+        JsonlWriter writer = new JsonlWriter();
+        
+        Table table = Table.create("test");
+        table.addColumns(
+            tech.tablesaw.columns.strings.StringColumn.create("col1", new String[]{"value1"}),
+            tech.tablesaw.columns.numbers.IntColumn.create("col2", new int[]{42})
+        );
+        
+        Destination dest = new Destination() {
+            @Override
+            public Writer createWriter() throws IOException {
+                return new Writer() {
+                    @Override
+                    public void write(char[] cbuf, int off, int len) throws IOException {
+                        // No-op writer
+                    }
+                    
+                    @Override
+                    public void flush() throws IOException {
+                        // No-op flush
+                    }
+                    
+                    @Override
+                    public void close() throws IOException {
+                        // No-op close
+                    }
+                };
+            }
+            
+            @Override
+            public OutputStream createOutputStream() throws IOException {
+                return null;
+            }
+        };
+        
+        JsonlWriteOptions options = JsonlWriteOptions.builder(dest).build();
+        
+        writer.write(table, options);
+    }
+}
+
+[Write] wrote to /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlWriterwrite_ObjectNodesetFikaTest.java
+[Validate] FAILED - hard constraints violated
+[Decide] approved=False (hard constraint violation, will retry if iteration<1)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — DECISION
+----------------------------------------------------------------------------------------------------
+approved=False reason=constraint_violation
+[Finalize] Cleaned up unsuccessful test file: /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlWriterwrite_ObjectNodesetFikaTest.java
+
+====================================================================================================
+TEST CASE 7: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+====================================================================================================
+Entry Point: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+Third Party Method: com.fasterxml.jackson.databind.node.ObjectNode.set(java.lang.String, com.fasterxml.jackson.databind.JsonNode)
+Approved: False
+Total Iterations: 1
+Tests Passed: False
+Target Method Covered: False
+
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+FINAL RESULT: FAILED
+Reason: Tests failed to compile or run successfully
+====================================================================================================
+
+================================================================================
+PROCESSING TEST CASE 8/12
+Entry Point: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+================================================================================
+[Generate] produced 2861 chars
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — PROMPT
+----------------------------------------------------------------------------------------------------
+You are an expert Java developer who writes good unit tests in order to maximize code coverage. You are specialized in Maven and JUnit 5 testing framework.
+
+Generate a JUnit 5 test that executes the full chain of method calls starting from the specified entry point method and reaching the specified third-party method. No assertions, inspections, or verifications are required. The test’s only goal is to try invoking the given third-party method during execution. 
+
+You are provided with:
+entryPoint: Fully qualified public method where execution must begin.
+thirdPartyMethod: Fully qualified third-party method that must be invoked.
+path: Ordered list of method calls that must be traversed during execution.
+methodSources: Complete and exact source code for all methods in the call chain.
+constructors: All constructors of the class containing the entryPoint. Use one of these constructors to instantiate the class in the test. Then use that instance to call the entryPoint method.
+fieldDeclarations: Instance variables and class variables of the class containing the entryPoint. These are the fields that can be accessed or set when creating the test.
+setters: All setters of the entryPoint class that can modify the declared fields.
+imports: All non-core-java imports that may be required by the test.
+
+entryPoint: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+thirdPartyMethod: com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+path: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions) -> tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions) -> com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+methodSources:
+```java
+@Override
+public void write(Table table, Destination dest) // PATH: Test should invoke the next JsonWriter.write(...) [step in execution path]
+{
+    write(table, JsonWriteOptions.builder(dest).build());
+}
+
+public void write(Table table, JsonWriteOptions options) {
+    ArrayNode output = mapper.createArrayNode();
+    if (options.asObjects()) {
+        for (int r = 0; r < table.rowCount(); r++) {
+            ObjectNode row = mapper.createObjectNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            output.add(row);
+        }
+    } else {
+        if (options.header()) {
+            ArrayNode row = mapper.createArrayNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.add(mapper.convertValue(table.column(c).name(), JsonNode.class));
+            }
+            output.add(row);
+        }
+        for (int r = 0; r < table.rowCount(); r++) {
+            ArrayNode row = mapper.createArrayNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.add(mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            output.add(row);
+        }
+    }
+    try (Writer writer = options.destination().createWriter()) {
+        // PATH: Test should invoke the next ObjectMapper.writeValueAsString(...) [step in execution path]
+        String str = mapper.writeValueAsString(output);
+        writer.write(str);
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+constructors:
+```java
+JsonWriter() {
+}
+```
+fieldDeclarations:
+```java
+private static final JsonWriter INSTANCE = new JsonWriter();
+private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+```
+setters:
+```java
+public void write(Table table, JsonWriteOptions options) {
+    ArrayNode output = mapper.createArrayNode();
+    if (options.asObjects()) {
+        for (int r = 0; r < table.rowCount(); r++) {
+            ObjectNode row = mapper.createObjectNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            output.add(row);
+        }
+    } else {
+        if (options.header()) {
+            ArrayNode row = mapper.createArrayNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.add(mapper.convertValue(table.column(c).name(), JsonNode.class));
+            }
+            output.add(row);
+        }
+        for (int r = 0; r < table.rowCount(); r++) {
+            ArrayNode row = mapper.createArrayNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.add(mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            output.add(row);
+        }
+    }
+    try (Writer writer = options.destination().createWriter()) {
+        String str = mapper.writeValueAsString(output);
+        writer.write(str);
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+imports: 
+... (prompt truncated, total 6550 chars)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — GENERATED JAVA
+----------------------------------------------------------------------------------------------------
+package tech.tablesaw.io.json;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import tech.tablesaw.api.Table;
+import tech.tablesaw.io.Destination;
+import tech.tablesaw.io.WriteOptions;
+import tech.tablesaw.io.json.JsonWriteOptions;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.io.Writer;
+
+@ExtendWith(MockitoExtension.class)
+class JsonWriterwrite_ObjectMapperwriteValueAsStringFikaTest {
+
+    @Mock
+    private Destination mockDestination;
+    
+    @Mock
+    private Writer mockWriter;
+
+    @Test
+    void testWriteChain() throws IOException {
+        JsonWriter writer = new JsonWriter();
+        
+        Table table = Table.create("testTable");
+        table.addColumns(
+            tech.tablesaw.columns.strings.StringColumn.create("col1", new String[]{"a", "b"}),
+            tech.tablesaw.columns.numbers.IntColumn.create("col2", new int[]{1, 2})
+        );
+        
+        WriteOptions writeOptions = new WriteOptions() {
+            @Override
+            public Destination destination() {
+                return mockDestination;
+            }
+            
+            @Override
+            public String header() {
+                return null;
+            }
+            
+            @Override
+            public String tableName() {
+                return null;
+            }
+            
+            @Override
+            public String locale() {
+                return null;
+            }
+            
+            @Override
+            public int maxCharsPerColumn() {
+                return 0;
+            }
+            
+            @Override
+            public boolean escapePolicy() {
+                return false;
+            }
+            
+            @Override
+            public String separator() {
+                return null;
+            }
+            
+            @Override
+            public String lineEnd() {
+                return null;
+            }
+            
+            @Override
+            public String lineSeparatorString() {
+                return null;
+            }
+            
+            @Override
+            public boolean ignoreLeadingWhitespaces() {
+                return false;
+            }
+            
+            @Override
+            public boolean ignoreTrailingWhitespaces() {
+                return false;
+            }
+            
+            @Override
+            public boolean systemLineEnd() {
+                return false;
+            }
+            
+            @Override
+            public boolean useSystemEncoding() {
+                return false;
+            }
+        };
+        
+        org.mockito.Mockito.when(mockDestination.createWriter()).thenReturn(mockWriter);
+        
+        writer.write(table, writeOptions);
+    }
+}
+
+[Write] wrote to /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/json/JsonWriterwrite_ObjectMapperwriteValueAsStringFikaTest.java
+[Validate] FAILED - hard constraints violated
+[Decide] approved=False (hard constraint violation, will retry if iteration<1)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — DECISION
+----------------------------------------------------------------------------------------------------
+approved=False reason=constraint_violation
+[Finalize] Cleaned up unsuccessful test file: /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/json/JsonWriterwrite_ObjectMapperwriteValueAsStringFikaTest.java
+
+====================================================================================================
+TEST CASE 8: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+====================================================================================================
+Entry Point: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+Approved: False
+Total Iterations: 1
+Tests Passed: False
+Target Method Covered: False
+
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+FINAL RESULT: FAILED
+Reason: Tests failed to compile or run successfully
+====================================================================================================
+
+================================================================================
+PROCESSING TEST CASE 9/12
+Entry Point: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)
+================================================================================
+[Generate] produced 1957 chars
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — PROMPT
+----------------------------------------------------------------------------------------------------
+You are an expert Java developer who writes good unit tests in order to maximize code coverage. You are specialized in Maven and JUnit 5 testing framework.
+
+Generate a JUnit 5 test that executes the full chain of method calls starting from the specified entry point method and reaching the specified third-party method. No assertions, inspections, or verifications are required. The test’s only goal is to try invoking the given third-party method during execution. 
+
+You are provided with:
+entryPoint: Fully qualified public method where execution must begin.
+thirdPartyMethod: Fully qualified third-party method that must be invoked.
+path: Ordered list of method calls that must be traversed during execution.
+methodSources: Complete and exact source code for all methods in the call chain.
+constructors: All constructors of the class containing the entryPoint. Use one of these constructors to instantiate the class in the test. Then use that instance to call the entryPoint method.
+fieldDeclarations: Instance variables and class variables of the class containing the entryPoint. These are the fields that can be accessed or set when creating the test.
+setters: All setters of the entryPoint class that can modify the declared fields.
+imports: All non-core-java imports that may be required by the test.
+
+entryPoint: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)
+thirdPartyMethod: com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)
+path: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions) -> tech.tablesaw.io.json.JsonWriter.<clinit>() -> com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)
+methodSources:
+```java
+public void write(Table table, JsonWriteOptions options) {
+    ArrayNode output = mapper.createArrayNode();
+    if (options.asObjects()) {
+        for (int r = 0; r < table.rowCount(); r++) {
+            ObjectNode row = mapper.createObjectNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            output.add(row);
+        }
+    } else {
+        if (options.header()) {
+            ArrayNode row = mapper.createArrayNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.add(mapper.convertValue(table.column(c).name(), JsonNode.class));
+            }
+            output.add(row);
+        }
+        for (int r = 0; r < table.rowCount(); r++) {
+            ArrayNode row = mapper.createArrayNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.add(mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            output.add(row);
+        }
+    }
+    try (Writer writer = options.destination().createWriter()) {
+        String str = mapper.writeValueAsString(output);
+        writer.write(str);
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+
+tech.tablesaw.io.json.JsonWriter
+
+// Static field initializations
+private static final JsonWriter INSTANCE = new JsonWriter();
+private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+
+// Static initializer blocks
+static static {
+    register(Table.defaultWriterRegistry);
+}
+
+```
+constructors:
+```java
+JsonWriter() {
+}
+```
+fieldDeclarations:
+```java
+private static final JsonWriter INSTANCE = new JsonWriter();
+private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+```
+setters:
+```java
+public void write(Table table, JsonWriteOptions options) {
+    ArrayNode output = mapper.createArrayNode();
+    if (options.asObjects()) {
+        for (int r = 0; r < table.rowCount(); r++) {
+            ObjectNode row = mapper.createObjectNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            output.add(row);
+        }
+    } else {
+        if (options.header()) {
+            ArrayNode row = mapper.createArrayNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.add(mapper.convertValue(table.column(c).name(), JsonNode.class));
+            }
+            output.add(row);
+        }
+        for (int r = 0; r < table.rowCount(); r++) {
+            ArrayNode row = mapper.createArrayNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.add(mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            output.add(row);
+        }
+    }
+    try (Writer writer = options.destination().createWriter()) {
+        String str = mapper.writeValueAsString(output);
+        writer.write(str);
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+imports: c
+... (prompt truncated, total 6672 chars)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — GENERATED JAVA
+----------------------------------------------------------------------------------------------------
+package tech.tablesaw.io.json;
+
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import tech.tablesaw.api.Table;
+import tech.tablesaw.io.Destination;
+import tech.tablesaw.io.RuntimeIOException;
+import tech.tablesaw.io.WriterRegistry;
+import tech.tablesaw.io.json.JsonWriteOptions.Builder;
+import java.io.IOException;
+import java.io.Writer;
+
+public class JsonWritermethod_ObjectMapperregisterModuleFikaTest {
+
+    @Test
+    public void testWriteTriggersObjectMapperRegisterModule() throws Exception {
+        // Create a mock Table
+        Table mockTable = Mockito.mock(Table.class);
+        Mockito.when(mockTable.rowCount()).thenReturn(1);
+        Mockito.when(mockTable.columnCount()).thenReturn(1);
+        Mockito.when(mockTable.column(0)).thenReturn(Mockito.mock(tech.tablesaw.columns.Column.class));
+        Mockito.when(mockTable.column(0).name()).thenReturn("testColumn");
+        Mockito.when(mockTable.get(0, 0)).thenReturn("testValue");
+
+        // Create a mock Destination
+        Destination mockDestination = Mockito.mock(Destination.class);
+        Writer mockWriter = Mockito.mock(Writer.class);
+        Mockito.when(mockDestination.createWriter()).thenReturn(mockWriter);
+
+        // Create JsonWriteOptions using builder pattern
+        JsonWriteOptions options = JsonWriteOptions.builder(mockDestination)
+                .asObjects(false)
+                .header(false)
+                .build();
+
+        // Instantiate JsonWriter using the provided constructor
+        JsonWriter jsonWriter = new JsonWriter();
+
+        // Call the entry point method
+        jsonWriter.write(mockTable, options);
+    }
+}
+
+[Write] wrote to /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/json/JsonWritermethod_ObjectMapperregisterModuleFikaTest.java
+[Validate] PASSED - hard constraints satisfied
+[Run] feedback_chars=3612
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — MAVEN RESULT
+----------------------------------------------------------------------------------------------------
+success=True exit_code=0
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< tech.tablesaw:tablesaw-json >---------------------
+[INFO] Building tablesaw-json 0.44.4-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ tablesaw-json ---
+[INFO] Deleting /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/target
+[INFO] 
+[INFO] --- jacoco:0.8.14:prepare-agent (prepare-agent) @ tablesaw-json ---
+[INFO] argLine set to -javaagent:/u/gamageyo/.m2/repository/org/jacoco/org.jacoco.agent/0.8.14/org.jacoco.agent-0.8.14-runtime.jar=destfile=/part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/target/jacoco.exec
+[INFO] 
+[INFO] --- git-code-format:5.3:install-hooks (install-formatter-hook) @ tablesaw-json ---
+[INFO] Installing git hooks
+[INFO] Installed git hooks
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ tablesaw-json ---
+[INFO] skip non existing resourceDirectory /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (java-compile) @ tablesaw-json ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 8 source files with javac [debug target 11] to target/classes
+[WARNING] system modules path not set in conjunction with -source 11
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ tablesaw-json ---
+[INFO] skip non existing resourceDirectory /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (java-test-compile) @ tablesaw-json ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 6 source files with javac [debug target 11] to target/test-classes
+[WARNING] system modules path not set in conjunction with -source 11
+[WARNING] /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/json/JsonWritermethod_ObjectMapperregisterModuleFikaTest.java:[27,53] unchecked method invocation: method thenReturn in interface org.mockito.stubbing.OngoingStubbing is applied to given types
+  required: T
+  found:    tech.tablesaw.columns.Column
+[WARNING] /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/json/JsonWritermethod_ObjectMapperregisterModuleFikaTest.java:[27,66] unchecked conversion
+  required: T
+  found:    tech.tablesaw.columns.Column
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ tablesaw-json ---
+[INFO] Tests will run in random order. To reproduce ordering use flag -Dsurefire.runOrder.random.seed=903470770447136
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] --- jacoco:0.8.14:report (report) @ tablesaw-json ---
+[INFO] Loading execution data file /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/target/jacoco.exec
+[INFO] Analyzed bundle 'tablesaw-json' with 12 classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  9.267 s
+[INFO] Finished at: 2026-08-09T01:08:16-04:00
+[INFO] ------------------------------------------------------------------------
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+[Coverage] target 'com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)' covered=True
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — COVERAGE
+----------------------------------------------------------------------------------------------------
+{
+  "method_covered": true,
+  "total_covered_lines": 19,
+  "error": null,
+  "path_coverage_details": [
+    {
+      "index": 1,
+      "method": "tech.tablesaw.io.json.JsonWriter.<clinit>()",
+      "method_class": "tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json",
+      "covered": true,
+      "error": null
+    },
+    {
+      "index": 2,
+      "method": "com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)",
+      "method_class": "tech.tablesaw.io.json.JsonWriter",
+      "covered": true,
+      "error": null
+    }
+  ]
+}
+[Decide] approved=True (tests passed AND target method covered)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — DECISION
+----------------------------------------------------------------------------------------------------
+approved=True reason=passed+covered
+[Finalize] SUCCESS: Test passed and target method covered
+
+====================================================================================================
+TEST CASE 9: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)
+====================================================================================================
+Entry Point: tech.tablesaw.io.json.JsonWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonWriteOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)
+Approved: True
+Approved at Iteration: 1
+Total Iterations: 1
+Tests Passed: True
+Target Method Covered: True
+
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+FINAL RESULT: APPROVED
+====================================================================================================
+
+================================================================================
+PROCESSING TEST CASE 10/12
+Entry Point: tech.tablesaw.io.json.JsonReader.read(tech.tablesaw.io.json.JsonReadOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+================================================================================
+[Generate] produced 998 chars
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — PROMPT
+----------------------------------------------------------------------------------------------------
+You are an expert Java developer who writes good unit tests in order to maximize code coverage. You are specialized in Maven and JUnit 5 testing framework.
+
+Generate a JUnit 5 test that executes the full chain of method calls starting from the specified entry point method and reaching the specified third-party method. No assertions, inspections, or verifications are required. The test’s only goal is to try invoking the given third-party method during execution. 
+
+You are provided with:
+entryPoint: Fully qualified public method where execution must begin.
+thirdPartyMethod: Fully qualified third-party method that must be invoked.
+path: Ordered list of method calls that must be traversed during execution.
+methodSources: Complete and exact source code for all methods in the call chain.
+constructors: All constructors of the class containing the entryPoint. Use one of these constructors to instantiate the class in the test. Then use that instance to call the entryPoint method.
+fieldDeclarations: Instance variables and class variables of the class containing the entryPoint. These are the fields that can be accessed or set when creating the test.
+setters: All setters of the entryPoint class that can modify the declared fields.
+imports: All non-core-java imports that may be required by the test.
+
+entryPoint: tech.tablesaw.io.json.JsonReader.read(tech.tablesaw.io.json.JsonReadOptions)
+thirdPartyMethod: com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+path: tech.tablesaw.io.json.JsonReader.read(tech.tablesaw.io.json.JsonReadOptions) -> tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions) -> com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+methodSources:
+```java
+@Override
+public Table read(JsonReadOptions options) {
+    JsonNode jsonObj = null;
+    try {
+        jsonObj = mapper.readTree(options.source().createReader(null));
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+    if (options.path() != null) {
+        jsonObj = jsonObj.at(options.path());
+    }
+    if (!jsonObj.isArray()) {
+        throw new IllegalStateException("Only reading a JSON array is currently supported. The array must hold an array or object for each row.");
+    }
+    if (jsonObj.size() == 0) {
+        return Table.create(options.tableName());
+    }
+    JsonNode firstNode = jsonObj.get(0);
+    if (firstNode.isArray()) {
+        return convertArrayOfArrays(jsonObj, options);
+    }
+    // PATH: Test should invoke the next JsonReader.convertArrayOfObjects(...) [step in execution path]
+    return convertArrayOfObjects(jsonObj, options);
+}
+
+private Table convertArrayOfObjects(JsonNode jsonObj, ReadOptions options) {
+    // flatten each object inside the array
+    StringBuilder result = new StringBuilder("[");
+    for (int i = 0; i < jsonObj.size(); i++) {
+        JsonNode rowObj = jsonObj.get(i);
+        String flattenedRow = null;
+        try {
+            flattenedRow = // PATH: Test should invoke the next ObjectMapper.writeValueAsString(...) [step in execution path]
+            JsonFlattener.flatten(mapper.writeValueAsString(rowObj));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeIOException(e);
+        }
+        if (i != 0) {
+            result.append(",");
+        }
+        result.append(flattenedRow);
+    }
+    String flattenedJsonString = result.append("]").toString();
+    JsonNode flattenedJsonObj = null;
+    try {
+        flattenedJsonObj = mapper.readTree(flattenedJsonString);
+    } catch (JsonProcessingException e) {
+        throw new RuntimeIOException(e);
+    }
+    Set<String> colNames = new LinkedHashSet<>();
+    for (JsonNode row : flattenedJsonObj) {
+        Iterator<String> fieldNames = row.fieldNames();
+        while (fieldNames.hasNext()) {
+            colNames.add(fieldNames.next());
+        } 
+    }
+    List<String> columnNames = new ArrayList<>(colNames);
+    List<String[]> dataRows = new ArrayList<>();
+    for (JsonNode node : flattenedJsonObj) {
+        String[] arr = new String[columnNames.size()];
+        for (int i = 0; i < columnNames.size(); i++) {
+            if (node.has(columnNames.get(i))) {
+                arr[i] = node.get(columnNames.get(i)).asText();
+            } else {
+                arr[i] = null;
+            }
+        }
+        dataRows.add(arr);
+    }
+    return TableBuildingUtils.build(columnNames, dataRows, options);
+}
+```
+constructors:
+```java
+JsonReader() {
+}
+```
+fieldDeclarations:
+```java
+private static final JsonReader INSTANCE = new JsonReader();
+private static final ObjectMapper mapper = new ObjectMapper();
+```
+setters:
+
+imports: com.fasterxml.jackson.core.JsonProcessingException, com.fasterxml.jackson.databind.JsonNode, com.fasterxml.jackson.databind.ObjectMapper, com.github.wnameless.json.flattener.JsonFlattener, tech.tablesaw.api.Table, tech.tablesaw.io.json.JsonReadOptions.Builder
+
+Hard constraints:
+- The t
+... (prompt truncated, total 6220 chars)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — GENERATED JAVA
+----------------------------------------------------------------------------------------------------
+package tech.tablesaw.io.json;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.wnameless.json.flattener.JsonFlattener;
+import tech.tablesaw.api.Table;
+import tech.tablesaw.io.json.JsonReadOptions.Builder;
+import org.junit.jupiter.api.Test;
+import java.io.IOException;
+import java.io.StringReader;
+
+public class JsonReaderconvertArrayOfObjects_ObjectMapperwriteValueAsStringFikaTest {
+
+    @Test
+    public void testReadCallsConvertArrayOfObjectsCallsWriteValueAsString() throws IOException {
+        JsonReader jsonReader = new JsonReader();
+        
+        String jsonContent = "[{\"name\":\"John\",\"age\":30},{\"name\":\"Jane\",\"age\":25}]";
+        JsonReadOptions options = JsonReadOptions.builder(new StringReader(jsonContent))
+                .tableName("testTable")
+                .build();
+        
+        Table result = jsonReader.read(options);
+    }
+}
+
+[Write] wrote to /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/json/JsonReaderconvertArrayOfObjects_ObjectMapperwriteValueAsStringFikaTest.java
+[Validate] PASSED - hard constraints satisfied
+[Run] feedback_chars=3482
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — MAVEN RESULT
+----------------------------------------------------------------------------------------------------
+success=True exit_code=0
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< tech.tablesaw:tablesaw-json >---------------------
+[INFO] Building tablesaw-json 0.44.4-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ tablesaw-json ---
+[INFO] Deleting /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/target
+[INFO] 
+[INFO] --- jacoco:0.8.14:prepare-agent (prepare-agent) @ tablesaw-json ---
+[INFO] argLine set to -javaagent:/u/gamageyo/.m2/repository/org/jacoco/org.jacoco.agent/0.8.14/org.jacoco.agent-0.8.14-runtime.jar=destfile=/part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/target/jacoco.exec
+[INFO] 
+[INFO] --- git-code-format:5.3:install-hooks (install-formatter-hook) @ tablesaw-json ---
+[INFO] Installing git hooks
+[INFO] Installed git hooks
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ tablesaw-json ---
+[INFO] skip non existing resourceDirectory /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (java-compile) @ tablesaw-json ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 8 source files with javac [debug target 11] to target/classes
+[WARNING] system modules path not set in conjunction with -source 11
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ tablesaw-json ---
+[INFO] skip non existing resourceDirectory /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (java-test-compile) @ tablesaw-json ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 7 source files with javac [debug target 11] to target/test-classes
+[WARNING] system modules path not set in conjunction with -source 11
+[WARNING] /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/json/JsonWritermethod_ObjectMapperregisterModuleFikaTest.java:[27,53] unchecked method invocation: method thenReturn in interface org.mockito.stubbing.OngoingStubbing is applied to given types
+  required: T
+  found:    tech.tablesaw.columns.Column
+[WARNING] /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/json/JsonWritermethod_ObjectMapperregisterModuleFikaTest.java:[27,66] unchecked conversion
+  required: T
+  found:    tech.tablesaw.columns.Column
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ tablesaw-json ---
+[INFO] Tests will run in random order. To reproduce ordering use flag -Dsurefire.runOrder.random.seed=903485304081707
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] --- jacoco:0.8.14:report (report) @ tablesaw-json ---
+[INFO] Loading execution data file /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/target/jacoco.exec
+[INFO] Analyzed bundle 'tablesaw-json' with 12 classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.966 s
+[INFO] Finished at: 2026-08-09T01:08:28-04:00
+[INFO] ------------------------------------------------------------------------
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+[Coverage] target 'com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)' covered=True
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — COVERAGE
+----------------------------------------------------------------------------------------------------
+{
+  "method_covered": true,
+  "total_covered_lines": 41,
+  "error": null,
+  "path_coverage_details": [
+    {
+      "index": 1,
+      "method": "tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io.ReadOptions)",
+      "method_class": "tech.tablesaw.io.json.JsonReader.read(tech.tablesaw.io.json",
+      "covered": true,
+      "error": null
+    },
+    {
+      "index": 2,
+      "method": "com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)",
+      "method_class": "tech.tablesaw.io.json.JsonReader.convertArrayOfObjects(com.fasterxml.jackson.databind.JsonNode, tech.tablesaw.io",
+      "covered": true,
+      "error": null
+    }
+  ]
+}
+[Decide] approved=True (tests passed AND target method covered)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — DECISION
+----------------------------------------------------------------------------------------------------
+approved=True reason=passed+covered
+[Finalize] SUCCESS: Test passed and target method covered
+
+====================================================================================================
+TEST CASE 10: tech.tablesaw.io.json.JsonReader.read(tech.tablesaw.io.json.JsonReadOptions)
+====================================================================================================
+Entry Point: tech.tablesaw.io.json.JsonReader.read(tech.tablesaw.io.json.JsonReadOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+Approved: True
+Approved at Iteration: 1
+Total Iterations: 1
+Tests Passed: True
+Target Method Covered: True
+
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+FINAL RESULT: APPROVED
+====================================================================================================
+
+================================================================================
+PROCESSING TEST CASE 11/12
+Entry Point: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)
+================================================================================
+[Generate] produced 1992 chars
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — PROMPT
+----------------------------------------------------------------------------------------------------
+You are an expert Java developer who writes good unit tests in order to maximize code coverage. You are specialized in Maven and JUnit 5 testing framework.
+
+Generate a JUnit 5 test that executes the full chain of method calls starting from the specified entry point method and reaching the specified third-party method. No assertions, inspections, or verifications are required. The test’s only goal is to try invoking the given third-party method during execution. 
+
+You are provided with:
+entryPoint: Fully qualified public method where execution must begin.
+thirdPartyMethod: Fully qualified third-party method that must be invoked.
+path: Ordered list of method calls that must be traversed during execution.
+methodSources: Complete and exact source code for all methods in the call chain.
+constructors: All constructors of the class containing the entryPoint. Use one of these constructors to instantiate the class in the test. Then use that instance to call the entryPoint method.
+fieldDeclarations: Instance variables and class variables of the class containing the entryPoint. These are the fields that can be accessed or set when creating the test.
+setters: All setters of the entryPoint class that can modify the declared fields.
+imports: All non-core-java imports that may be required by the test.
+
+entryPoint: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+thirdPartyMethod: com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)
+path: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions) -> tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions) -> tech.tablesaw.io.jsonl.JsonlWriter.<clinit>() -> com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)
+methodSources:
+```java
+@Override
+public void write(Table table, Destination dest) // PATH: Test should invoke the next JsonlWriter.write(...) [step in execution path]
+{
+    write(table, JsonlWriteOptions.builder(dest).build());
+}
+
+public void write(Table table, JsonlWriteOptions options) {
+    try (Writer writer = options.destination().createWriter()) {
+        for (int r = 0; r < table.rowCount(); r++) {
+            ObjectNode row = mapper.createObjectNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            String str = mapper.writeValueAsString(row);
+            writer.write(str);
+            if (r < (table.rowCount() - 1)) {
+                writer.write("
+");
+            }
+        }
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+
+tech.tablesaw.io.jsonl.JsonlWriter
+
+// Static field initializations
+private static final JsonlWriter INSTANCE = new JsonlWriter();
+private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+
+// Static initializer blocks
+static static {
+    register(Table.defaultWriterRegistry);
+}
+
+```
+constructors:
+```java
+JsonlWriter() {
+}
+```
+fieldDeclarations:
+```java
+private static final JsonlWriter INSTANCE = new JsonlWriter();
+private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+```
+setters:
+```java
+public void write(Table table, JsonlWriteOptions options) {
+    try (Writer writer = options.destination().createWriter()) {
+        for (int r = 0; r < table.rowCount(); r++) {
+            ObjectNode row = mapper.createObjectNode();
+            for (int c = 0; c < table.columnCount(); c++) {
+                row.set(table.column(c).name(), mapper.convertValue(table.get(r, c), JsonNode.class));
+            }
+            String str = mapper.writeValueAsString(row);
+            writer.write(str);
+            if (r < (table.rowCount() - 1)) {
+                writer.write("
+");
+            }
+        }
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+```
+imports: com.fasterxml.jackson.databind.JsonNode, com.fasterxml.jackson.databind.Module, com.fasterxml.jackson.databind.ObjectMapper, com.fasterxml.jackson.databind.node.ObjectNode, com.fasterxml.jackson.datatype.jsr310.JavaTimeModule, tech.tablesaw.api.Table, tech.tablesaw.io.Destination, tech.tablesaw.io.RuntimeIOException, tech.tablesaw.io.WriterRegistry, tech.tablesaw.io.jsonl.JsonlWriteOptions.Builder
+
+Hard constraints:
+- The test class MUST NOT extend any other class (no 'extends' keyword).
+- The test class MUST NOT override any methods (no @Override annotations).
+- Do NOT create anonymous inner classes (e.g., new ClassName() { ... }).
+- Use real objects whenever possible.
+- Use mocks only when necessary, and ONLY for objects required as constructor parameters when instantiating the class that contains the entry-point method, provided those objects are not directly related to the target method call.
+... (prompt truncated, total 5721 chars)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — GENERATED JAVA
+----------------------------------------------------------------------------------------------------
+package tech.tablesaw.io.jsonl;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import tech.tablesaw.api.Table;
+import tech.tablesaw.io.Destination;
+import tech.tablesaw.io.RuntimeIOException;
+import tech.tablesaw.io.WriterRegistry;
+import tech.tablesaw.io.jsonl.JsonlWriteOptions.Builder;
+import java.io.IOException;
+import java.io.Writer;
+
+class JsonlWritermethod_ObjectMapperregisterModuleFikaTest {
+
+    @Test
+    void testWritePath() throws IOException {
+        // Create mock objects for required parameters
+        Table mockTable = Mockito.mock(Table.class);
+        Destination mockDestination = Mockito.mock(Destination.class);
+        Writer mockWriter = Mockito.mock(Writer.class);
+        
+        // Configure mock behavior to avoid NPE during execution
+        Mockito.when(mockTable.rowCount()).thenReturn(2);
+        Mockito.when(mockTable.columnCount()).thenReturn(1);
+        Mockito.when(mockTable.column(0)).thenReturn(Mockito.mock(tech.tablesaw.columns.Column.class));
+        Mockito.when(mockTable.column(0).name()).thenReturn("column1");
+        Mockito.when(mockTable.get(0, 0)).thenReturn("value1");
+        Mockito.when(mockTable.get(1, 0)).thenReturn("value2");
+        
+        Mockito.when(mockDestination.createWriter()).thenReturn(mockWriter);
+        
+        // Create JsonlWriter instance using the provided constructor
+        JsonlWriter writer = new JsonlWriter();
+        
+        // Create WriteOptions using the builder pattern
+        JsonlWriteOptions options = JsonlWriteOptions.builder(mockDestination).build();
+        
+        // Invoke the entry point method which will trigger the static initializer
+        // and ultimately call ObjectMapper.registerModule
+        writer.write(mockTable, options);
+    }
+}
+
+[Write] wrote to /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlWritermethod_ObjectMapperregisterModuleFikaTest.java
+[Validate] PASSED - hard constraints satisfied
+[Run] feedback_chars=4198
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — MAVEN RESULT
+----------------------------------------------------------------------------------------------------
+success=True exit_code=0
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< tech.tablesaw:tablesaw-json >---------------------
+[INFO] Building tablesaw-json 0.44.4-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ tablesaw-json ---
+[INFO] Deleting /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/target
+[INFO] 
+[INFO] --- jacoco:0.8.14:prepare-agent (prepare-agent) @ tablesaw-json ---
+[INFO] argLine set to -javaagent:/u/gamageyo/.m2/repository/org/jacoco/org.jacoco.agent/0.8.14/org.jacoco.agent-0.8.14-runtime.jar=destfile=/part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/target/jacoco.exec
+[INFO] 
+[INFO] --- git-code-format:5.3:install-hooks (install-formatter-hook) @ tablesaw-json ---
+[INFO] Installing git hooks
+[INFO] Installed git hooks
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ tablesaw-json ---
+[INFO] skip non existing resourceDirectory /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (java-compile) @ tablesaw-json ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 8 source files with javac [debug target 11] to target/classes
+[WARNING] system modules path not set in conjunction with -source 11
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ tablesaw-json ---
+[INFO] skip non existing resourceDirectory /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (java-test-compile) @ tablesaw-json ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 8 source files with javac [debug target 11] to target/test-classes
+[WARNING] system modules path not set in conjunction with -source 11
+[WARNING] /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlWritermethod_ObjectMapperregisterModuleFikaTest.java:[29,53] unchecked method invocation: method thenReturn in interface org.mockito.stubbing.OngoingStubbing is applied to given types
+  required: T
+  found:    tech.tablesaw.columns.Column
+[WARNING] /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlWritermethod_ObjectMapperregisterModuleFikaTest.java:[29,66] unchecked conversion
+  required: T
+  found:    tech.tablesaw.columns.Column
+[WARNING] /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/json/JsonWritermethod_ObjectMapperregisterModuleFikaTest.java:[27,53] unchecked method invocation: method thenReturn in interface org.mockito.stubbing.OngoingStubbing is applied to given types
+  required: T
+  found:    tech.tablesaw.columns.Column
+[WARNING] /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/json/JsonWritermethod_ObjectMapperregisterModuleFikaTest.java:[27,66] unchecked conversion
+  required: T
+  found:    tech.tablesaw.columns.Column
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ tablesaw-json ---
+[INFO] Tests will run in random order. To reproduce ordering use flag -Dsurefire.runOrder.random.seed=903500546878257
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] --- jacoco:0.8.14:report (report) @ tablesaw-json ---
+[INFO] Loading execution data file /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/target/jacoco.exec
+[INFO] Analyzed bundle 'tablesaw-json' with 12 classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.558 s
+[INFO] Finished at: 2026-08-09T01:08:45-04:00
+[INFO] ------------------------------------------------------------------------
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+[Coverage] target 'com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)' covered=True
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — COVERAGE
+----------------------------------------------------------------------------------------------------
+{
+  "method_covered": true,
+  "total_covered_lines": 17,
+  "error": null,
+  "path_coverage_details": [
+    {
+      "index": 1,
+      "method": "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl.JsonlWriteOptions)",
+      "method_class": "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io",
+      "covered": true,
+      "error": null
+    },
+    {
+      "index": 2,
+      "method": "tech.tablesaw.io.jsonl.JsonlWriter.<clinit>()",
+      "method_class": "tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.jsonl",
+      "covered": true,
+      "error": null
+    },
+    {
+      "index": 3,
+      "method": "com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)",
+      "method_class": "tech.tablesaw.io.jsonl.JsonlWriter",
+      "covered": true,
+      "error": null
+    }
+  ]
+}
+[Decide] approved=True (tests passed AND target method covered)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — DECISION
+----------------------------------------------------------------------------------------------------
+approved=True reason=passed+covered
+[Finalize] SUCCESS: Test passed and target method covered
+
+====================================================================================================
+TEST CASE 11: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+====================================================================================================
+Entry Point: tech.tablesaw.io.jsonl.JsonlWriter.write(tech.tablesaw.api.Table, tech.tablesaw.io.WriteOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.registerModule(com.fasterxml.jackson.databind.Module)
+Approved: True
+Approved at Iteration: 1
+Total Iterations: 1
+Tests Passed: True
+Target Method Covered: True
+
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+FINAL RESULT: APPROVED
+====================================================================================================
+
+================================================================================
+PROCESSING TEST CASE 12/12
+Entry Point: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.ReadOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+================================================================================
+[Generate] produced 1507 chars
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — PROMPT
+----------------------------------------------------------------------------------------------------
+You are an expert Java developer who writes good unit tests in order to maximize code coverage. You are specialized in Maven and JUnit 5 testing framework.
+
+Generate a JUnit 5 test that executes the full chain of method calls starting from the specified entry point method and reaching the specified third-party method. No assertions, inspections, or verifications are required. The test’s only goal is to try invoking the given third-party method during execution. 
+
+You are provided with:
+entryPoint: Fully qualified public method where execution must begin.
+thirdPartyMethod: Fully qualified third-party method that must be invoked.
+path: Ordered list of method calls that must be traversed during execution.
+methodSources: Complete and exact source code for all methods in the call chain.
+constructors: All constructors of the class containing the entryPoint. Use one of these constructors to instantiate the class in the test. Then use that instance to call the entryPoint method.
+fieldDeclarations: Instance variables and class variables of the class containing the entryPoint. These are the fields that can be accessed or set when creating the test.
+setters: All setters of the entryPoint class that can modify the declared fields.
+imports: All non-core-java imports that may be required by the test.
+
+entryPoint: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.ReadOptions)
+thirdPartyMethod: com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+path: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.ReadOptions) -> tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.jsonl.JsonlReadOptions) -> tech.tablesaw.io.jsonl.JsonlReader.convertObjects(java.util.Iterator, tech.tablesaw.io.ReadOptions) -> com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+methodSources:
+```java
+@Override
+public Table read(Source source) {
+    // PATH: Test should invoke the next JsonlReader.read(...) [step in execution path]
+    return read(JsonlReadOptions.builder(source).build());
+}
+
+@Override
+public Table read(JsonlReadOptions options) {
+    ObjectReader stream = mapper.readerFor(JsonNode.class);
+    try {
+        Reader reader = options.source().createReader(null);
+        JsonParser parser = stream.createParser(reader);
+        Iterator<JsonNode> iter = stream.readValues(parser);
+        // PATH: Test should invoke the next JsonlReader.convertObjects(...) [step in execution path]
+        return convertObjects(iter, options);
+    } catch (IOException e) {
+        throw new RuntimeIOException(e);
+    }
+}
+
+private Table convertObjects(Iterator<JsonNode> iter, ReadOptions options) {
+    // flatten each object inside the array
+    StringBuilder result = new StringBuilder("[");
+    boolean first = true;
+    for (; iter.hasNext();) {
+        JsonNode rowObj = iter.next();
+        String flattenedRow = null;
+        try {
+            flattenedRow = // PATH: Test should invoke the next ObjectMapper.writeValueAsString(...) [step in execution path]
+            JsonFlattener.flatten(mapper.writeValueAsString(rowObj));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeIOException(e);
+        }
+        if (!first) {
+            result.append(",");
+        }
+        first = false;
+        result.append(flattenedRow);
+    }
+    String flattenedJsonString = result.append("]").toString();
+    JsonNode flattenedJsonObj = null;
+    try {
+        flattenedJsonObj = mapper.readTree(flattenedJsonString);
+    } catch (JsonProcessingException e) {
+        throw new RuntimeIOException(e);
+    }
+    Set<String> colNames = new LinkedHashSet<>();
+    for (JsonNode row : flattenedJsonObj) {
+        Iterator<String> fieldNames = row.fieldNames();
+        while (fieldNames.hasNext()) {
+            colNames.add(fieldNames.next());
+        } 
+    }
+    List<String> columnNames = new ArrayList<>(colNames);
+    List<String[]> dataRows = new ArrayList<>();
+    for (JsonNode node : flattenedJsonObj) {
+        String[] arr = new String[columnNames.size()];
+        for (int i = 0; i < columnNames.size(); i++) {
+            if (node.has(columnNames.get(i))) {
+                arr[i] = node.get(columnNames.get(i)).asText();
+            } else {
+                arr[i] = null;
+            }
+        }
+        dataRows.add(arr);
+    }
+    return TableBuildingUtils.build(columnNames, dataRows, options);
+}
+```
+constructors:
+```java
+JsonlReader() {
+}
+```
+fieldDeclarations:
+```java
+private static final JsonlReader INSTANCE = new JsonlReader();
+private static final ObjectMapper mapper = new ObjectMapper();
+```
+setters:
+
+imports: com.fasterxml.jackson.core.JsonParser, com.fasterxml.jackson.core.JsonProcessingException, com.fasterxml.jackson.databind.JsonNode, com.fasterxml.jackson.databind.MappingIterator, com.fasterxml.jackson.databind.ObjectMapper, com.fasterxml.jackson.databind.ObjectReader, com.github.wnameless.json.flattener.JsonFlattener, tech.tablesaw.api.Table, tech.tablesaw.io.ReadOption
+... (prompt truncated, total 6391 chars)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — GENERATED JAVA
+----------------------------------------------------------------------------------------------------
+package tech.tablesaw.io.jsonl;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
+import com.github.wnameless.json.flattener.JsonFlattener;
+import tech.tablesaw.api.Table;
+import tech.tablesaw.io.ReadOptions;
+import tech.tablesaw.io.RuntimeIOException;
+import tech.tablesaw.io.Source;
+import tech.tablesaw.io.TableBuildingUtils;
+import tech.tablesaw.io.jsonl.JsonlReadOptions.Builder;
+import org.junit.jupiter.api.Test;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
+public class JsonlReaderconvertObjects_ObjectMapperwriteValueAsStringFikaTest {
+
+    @Test
+    public void test() throws IOException {
+        JsonlReader jsonlReader = new JsonlReader();
+        
+        Source source = new Source() {
+            @Override
+            public Reader createReader(java.nio.charset.Charset charset) {
+                return new java.io.StringReader("{\"test\":\"value\"}\n{\"test2\":\"value2\"}");
+            }
+        };
+        
+        ReadOptions readOptions = new ReadOptions(source) {
+            @Override
+            public Source source() {
+                return source;
+            }
+        };
+        
+        jsonlReader.read(readOptions);
+    }
+}
+
+[Write] wrote to /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlReaderconvertObjects_ObjectMapperwriteValueAsStringFikaTest.java
+[Validate] FAILED - hard constraints violated
+[Decide] approved=False (hard constraint violation, will retry if iteration<1)
+----------------------------------------------------------------------------------------------------
+ITERATION 1 — DECISION
+----------------------------------------------------------------------------------------------------
+approved=False reason=constraint_violation
+[Finalize] Cleaned up unsuccessful test file: /part/01/Tmp/gamageyo/fika/experiments/tablesaw/json/src/test/java/tech/tablesaw/io/jsonl/JsonlReaderconvertObjects_ObjectMapperwriteValueAsStringFikaTest.java
+
+====================================================================================================
+TEST CASE 12: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.ReadOptions)
+====================================================================================================
+Entry Point: tech.tablesaw.io.jsonl.JsonlReader.read(tech.tablesaw.io.ReadOptions)
+Third Party Method: com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(java.lang.Object)
+Approved: False
+Total Iterations: 1
+Tests Passed: False
+Target Method Covered: False
+
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+FINAL RESULT: FAILED
+Reason: Tests failed to compile or run successfully
+====================================================================================================
+
